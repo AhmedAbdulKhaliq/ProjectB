@@ -46,17 +46,45 @@ namespace ProjectB
 
         private void button1_Click(object sender, EventArgs e)
         {
-            string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text+ "','" + this.comboCloNo.Text + "')";
-            SqlConnection conDataBase = new SqlConnection(constring);
-            SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-            SqlDataReader myreader;
-            conDataBase.Open();
-            myreader = cmdDataBase.ExecuteReader();
-            MessageBox.Show("Saved");
-            while (myreader.Read())
+            if(button1.Text =="Add Rubric")
             {
+                string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text + "','" + this.comboCloNo.Text + "')";
+                SqlConnection conDataBase = new SqlConnection(constring);
+                SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                SqlDataReader myreader;
+                conDataBase.Open();
+                myreader = cmdDataBase.ExecuteReader();
+                MessageBox.Show("Saved");
+                while (myreader.Read())
+                {
+
+                }
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataRubric.DataSource = dtbl;
+                }
+                AddRubric.Hide();
+                tab2.Show();
 
             }
+            if(button1.Text == "Update")
+            {
+                SqlConnection connection = new SqlConnection(constring);
+                connection.Open();
+                string Qeury = "Update dbo.Rubric Set Id ='" + txtRubricId.Text + "',Details='" + txtDetails.Text + "',CLoId='" + comboCloNo.Text + "' Where Id ='" + id + "' ";
+
+                SqlCommand cmd = new SqlCommand(Qeury, connection);
+                cmd.ExecuteNonQuery();
+                tab2.BringToFront();
+                MessageBox.Show("Data Updated");
+                button1.Text = "Add Rubric";
+            }
+            
         }
 
         private void cmdAdd_Click(object sender, EventArgs e)
@@ -98,8 +126,10 @@ namespace ProjectB
                 txtRubricId.Text = dataRubric.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 comboCloNo.Text = dataRubric.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
                 txtDetails.Text = dataRubric.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
+                button1.Text = "Add Rubric";
+                tab2.Hide();
                 
-                tabPage1.Show();
+                AddRubric.Show();
 
 
 
@@ -109,14 +139,7 @@ namespace ProjectB
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(constring);
-            connection.Open();
-            string Qeury = "Update dbo.Rubric Set Id ='" + txtRubricId.Text + "',Details='" + txtDetails.Text +"',CLoId='"+ comboCloNo.Text+ "' Where Id ='" + id + "' ";
             
-            SqlCommand cmd = new SqlCommand(Qeury, connection);
-            cmd.ExecuteNonQuery();
-            tabPage2.BringToFront();
-            MessageBox.Show("Data Updated");
             
         }
     }

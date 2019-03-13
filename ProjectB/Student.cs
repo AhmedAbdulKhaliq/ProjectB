@@ -104,17 +104,54 @@ namespace ProjectB
 
                 if (flag == false)
                 {
-                    string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + this.txtStatus.Text + "')";
-                    SqlConnection conDataBase = new SqlConnection(constring);
-                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                    SqlDataReader myreader;
-                    conDataBase.Open();
-                    myreader = cmdDataBase.ExecuteReader();
-                    MessageBox.Show("Saved");
-                    while (myreader.Read())
+                    if(cmdAdd.Text == "Add")
                     {
+                        string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + this.txtStatus.Text + "')";
+                        SqlConnection conDataBase = new SqlConnection(constring);
+                        SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                        SqlDataReader myreader;
+                        conDataBase.Open();
+                        myreader = cmdDataBase.ExecuteReader();
+                        MessageBox.Show("Saved");
+                        while (myreader.Read())
+                        {
+
+                        }
+                        using (SqlConnection sqlcon = new SqlConnection(constring))
+                        {
+                            sqlcon.Open();
+                            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
+                            DataTable dtbl = new DataTable();
+                            sqlDA.Fill(dtbl);
+
+                            dataStudent.DataSource = dtbl;
+                        }
 
                     }
+                    if(cmdAdd.Text == "Update")
+                    {
+                        SqlConnection connection = new SqlConnection(constring);
+                        connection.Open();
+                        string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + txtStatus.Text + "' Where Id ='" + id + "' ";
+                        //
+                        SqlCommand cmd = new SqlCommand(Qeury, connection);
+                        cmd.ExecuteNonQuery();
+                        MessageBox.Show("Data Updated");
+                        cmdAdd.Text = "Add";
+                        using (SqlConnection sqlcon = new SqlConnection(constring))
+                        {
+                            sqlcon.Open();
+                            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
+                            DataTable dtbl = new DataTable();
+                            sqlDA.Fill(dtbl);
+
+                            dataStudent.DataSource = dtbl;
+                        }
+
+
+
+                    }
+
                 }
 
                 
@@ -257,6 +294,7 @@ namespace ProjectB
                 txtEmail.Text = dataStudent.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
                 txtRegistrationNumber.Text = dataStudent.Rows[e.RowIndex].Cells[5].FormattedValue.ToString();
                 txtStatus.Text = dataStudent.Rows[e.RowIndex].Cells[6].FormattedValue.ToString();
+                cmdAdd.Text = "Update";
                 
 
             }

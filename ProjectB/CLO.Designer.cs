@@ -43,7 +43,6 @@
             this.cloTableAdapter = new ProjectB.ProjectBDataSet1TableAdapters.CloTableAdapter();
             this.cmdAddClo = new System.Windows.Forms.Button();
             this.cmdView = new System.Windows.Forms.Button();
-            this.cmdUpdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataClo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet1)).BeginInit();
@@ -52,6 +51,7 @@
             // label2
             // 
             this.label2.AutoSize = true;
+            this.label2.BackColor = System.Drawing.SystemColors.ButtonFace;
             this.label2.Location = new System.Drawing.Point(49, 19);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(35, 13);
@@ -162,22 +162,12 @@
             this.cmdView.UseVisualStyleBackColor = true;
             this.cmdView.Click += new System.EventHandler(this.cmdView_Click);
             // 
-            // cmdUpdate
-            // 
-            this.cmdUpdate.Location = new System.Drawing.Point(289, 152);
-            this.cmdUpdate.Name = "cmdUpdate";
-            this.cmdUpdate.Size = new System.Drawing.Size(75, 23);
-            this.cmdUpdate.TabIndex = 11;
-            this.cmdUpdate.Text = "Update";
-            this.cmdUpdate.UseVisualStyleBackColor = true;
-            this.cmdUpdate.Click += new System.EventHandler(this.cmdUpdate_Click);
-            // 
             // CLO
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.ActiveBorder;
             this.ClientSize = new System.Drawing.Size(633, 331);
-            this.Controls.Add(this.cmdUpdate);
             this.Controls.Add(this.cmdView);
             this.Controls.Add(this.cmdAddClo);
             this.Controls.Add(this.dataClo);
@@ -209,6 +199,5 @@
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Button cmdAddClo;
         private System.Windows.Forms.Button cmdView;
-        private System.Windows.Forms.Button cmdUpdate;
     }
 }

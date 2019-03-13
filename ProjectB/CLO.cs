@@ -27,21 +27,56 @@ namespace ProjectB
 
         private void cmdAddClo_Click(object sender, EventArgs e)
         {
-            string qeury = "insert into dbo.Clo( Name,DateCreated,DateUpdated) values('" + this.txtCloName.Text + "','" + DateTime.Now  + "','" +DateTime.Now + "')";
-            SqlConnection conDataBase = new SqlConnection(constring);
-            SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-            SqlDataReader myreader;
-            conDataBase.Open();
-            myreader = cmdDataBase.ExecuteReader();
-            MessageBox.Show("Saved");
-            while (myreader.Read())
+            if (cmdAddClo.Text == "Add")
             {
+                string qeury = "insert into dbo.Clo( Name,DateCreated,DateUpdated) values('" + this.txtCloName.Text + "','" + DateTime.Now + "','" + DateTime.Now + "')";
+                SqlConnection conDataBase = new SqlConnection(constring);
+                SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                SqlDataReader myreader;
+                conDataBase.Open();
+                myreader = cmdDataBase.ExecuteReader();
+                MessageBox.Show("Saved");
+                while (myreader.Read())
+                {
+
+                }
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Clo", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataClo.DataSource = dtbl;
+                }
+
 
             }
+            if (cmdAddClo.Text == "Update")
+            {
+                SqlConnection connection = new SqlConnection(constring);
+                connection.Open();
+                string Qeury = "Update dbo.Clo Set Name ='" + txtCloName.Text + "',DateUpdated ='" + DateTime.Now + "' Where Id ='" + id + "' ";
+                //
+                SqlCommand cmd = new SqlCommand(Qeury, connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Data Updated");
+                cmdAddClo.Text = "Add";
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Clo", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataClo.DataSource = dtbl;
+
+                }
 
 
 
 
+            }
         }
 
         private void cmdView_Click(object sender, EventArgs e)
@@ -80,6 +115,7 @@ namespace ProjectB
 
 
                 txtCloName.Text = dataClo.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
+                cmdAddClo.Text = "Update";
                
 
 
@@ -89,13 +125,7 @@ namespace ProjectB
 
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
-            SqlConnection connection = new SqlConnection(constring);
-            connection.Open();
-            string Qeury = "Update dbo.Clo Set Name ='" + txtCloName.Text + "',DateUpdated ='" + DateTime.Now   + "' Where Id ='" + id + "' ";
-            //
-            SqlCommand cmd = new SqlCommand(Qeury, connection);
-            cmd.ExecuteNonQuery();
-            MessageBox.Show("Data Updated");
+            
         }
     }
 }
