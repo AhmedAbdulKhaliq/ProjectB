@@ -42,7 +42,6 @@
             this.label = new System.Windows.Forms.Label();
             this.txtStatus = new System.Windows.Forms.TextBox();
             this.cmdAdd = new System.Windows.Forms.Button();
-            this.cmdView = new System.Windows.Forms.Button();
             this.dataStudent = new System.Windows.Forms.DataGridView();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -58,9 +57,7 @@
             this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBDataSet = new ProjectB.ProjectBDataSet();
             this.studentTableAdapter = new ProjectB.ProjectBDataSetTableAdapters.StudentTableAdapter();
-            this.linkLabel1 = new System.Windows.Forms.LinkLabel();
             this.studentTableAdapter1 = new ProjectB.ProjectBDataSet2TableAdapters.StudentTableAdapter();
-            this.cmdupdate = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet2)).BeginInit();
@@ -180,16 +177,6 @@
             this.cmdAdd.UseVisualStyleBackColor = true;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
-            // cmdView
-            // 
-            this.cmdView.Location = new System.Drawing.Point(236, 188);
-            this.cmdView.Name = "cmdView";
-            this.cmdView.Size = new System.Drawing.Size(75, 23);
-            this.cmdView.TabIndex = 16;
-            this.cmdView.Text = "View ";
-            this.cmdView.UseVisualStyleBackColor = true;
-            this.cmdView.Click += new System.EventHandler(this.button1_Click);
-            // 
             // dataStudent
             // 
             this.dataStudent.AutoGenerateColumns = false;
@@ -292,39 +279,15 @@
             // 
             this.studentTableAdapter.ClearBeforeFill = true;
             // 
-            // linkLabel1
-            // 
-            this.linkLabel1.AutoSize = true;
-            this.linkLabel1.Location = new System.Drawing.Point(612, 71);
-            this.linkLabel1.Name = "linkLabel1";
-            this.linkLabel1.Size = new System.Drawing.Size(55, 13);
-            this.linkLabel1.TabIndex = 17;
-            this.linkLabel1.TabStop = true;
-            this.linkLabel1.Text = "linkLabel1";
-            this.linkLabel1.LinkClicked += new System.Windows.Forms.LinkLabelLinkClickedEventHandler(this.linkLabel1_LinkClicked);
-            // 
             // studentTableAdapter1
             // 
             this.studentTableAdapter1.ClearBeforeFill = true;
-            // 
-            // cmdupdate
-            // 
-            this.cmdupdate.Location = new System.Drawing.Point(467, 144);
-            this.cmdupdate.Name = "cmdupdate";
-            this.cmdupdate.Size = new System.Drawing.Size(75, 23);
-            this.cmdupdate.TabIndex = 18;
-            this.cmdupdate.Text = "Update";
-            this.cmdupdate.UseVisualStyleBackColor = true;
-            this.cmdupdate.Click += new System.EventHandler(this.cmdupdate_Click);
             // 
             // Student
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(874, 411);
-            this.Controls.Add(this.cmdupdate);
-            this.Controls.Add(this.linkLabel1);
-            this.Controls.Add(this.cmdView);
             this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.dataStudent);
             this.Controls.Add(this.txtStatus);
@@ -367,12 +330,10 @@
         private System.Windows.Forms.Label label;
         private System.Windows.Forms.TextBox txtStatus;
         private System.Windows.Forms.Button cmdAdd;
-        private System.Windows.Forms.Button cmdView;
         private System.Windows.Forms.DataGridView dataStudent;
         private ProjectBDataSet projectBDataSet;
         private System.Windows.Forms.BindingSource studentBindingSource;
         private ProjectBDataSetTableAdapters.StudentTableAdapter studentTableAdapter;
-        private System.Windows.Forms.LinkLabel linkLabel1;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private ProjectBDataSet2 projectBDataSet2;
         private System.Windows.Forms.BindingSource studentBindingSource1;
@@ -386,7 +347,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.Button cmdupdate;
     }
 }
 

@@ -80,9 +80,21 @@ namespace ProjectB
 
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                tab2.BringToFront();
+                
                 MessageBox.Show("Data Updated");
                 button1.Text = "Add Rubric";
+                AddRubric.Hide();
+                tab2.Show();
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataRubric.DataSource = dtbl;
+                }
+
             }
             
         }
@@ -126,7 +138,7 @@ namespace ProjectB
                 txtRubricId.Text = dataRubric.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 comboCloNo.Text = dataRubric.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
                 txtDetails.Text = dataRubric.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
-                button1.Text = "Add Rubric";
+                button1.Text = "Update";
                 tab2.Hide();
                 
                 AddRubric.Show();
