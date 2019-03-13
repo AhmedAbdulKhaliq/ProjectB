@@ -96,14 +96,28 @@ namespace ProjectB
 
 
                 txtRubricId.Text = dataRubric.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
-                txtDetails.Text = dataRubric.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
-                comboCloNo.Text = dataRubric.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
+                comboCloNo.Text = dataRubric.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
+                txtDetails.Text = dataRubric.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
+                
                 tabPage1.Show();
 
 
 
             }
 
+        }
+
+        private void cmdUpdate_Click(object sender, EventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(constring);
+            connection.Open();
+            string Qeury = "Update dbo.Rubric Set Id ='" + txtRubricId.Text + "',Details='" + txtDetails.Text +"',CLoId='"+ comboCloNo.Text+ "' Where Id ='" + id + "' ";
+            
+            SqlCommand cmd = new SqlCommand(Qeury, connection);
+            cmd.ExecuteNonQuery();
+            tabPage2.BringToFront();
+            MessageBox.Show("Data Updated");
+            
         }
     }
 }
