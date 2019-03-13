@@ -171,7 +171,7 @@
             // 
             this.cmdAdd.Location = new System.Drawing.Point(333, 142);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
+            this.cmdAdd.Size = new System.Drawing.Size(80, 20);
             this.cmdAdd.TabIndex = 15;
             this.cmdAdd.Text = "Add";
             this.cmdAdd.UseVisualStyleBackColor = true;
@@ -304,7 +304,7 @@
             this.Controls.Add(this.label2);
             this.MaximumSize = new System.Drawing.Size(1200, 1200);
             this.Name = "Student";
-            this.Text = "Form1";
+            this.Text = "Student";
             this.Load += new System.EventHandler(this.Student_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataStudent)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).EndInit();

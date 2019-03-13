@@ -16,7 +16,7 @@ namespace ProjectB
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new CLO());
+            Application.Run(new MainForm());
         }
     }
 }
