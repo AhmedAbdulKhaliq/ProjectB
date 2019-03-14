@@ -40,6 +40,15 @@ namespace ProjectB
 
         }
 
+        int fun(string text)
+        {
+            if(text == "Active")
+            {
+                return 5;
+            }
+            return 6;
+        }
+
         private void cmdAdd_Click(object sender, EventArgs e)
         {
             try
@@ -106,7 +115,7 @@ namespace ProjectB
                 {
                     if(cmdAdd.Text == "Add")
                     {
-                        string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + this.txtStatus.Text + "')";
+                        string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + fun(this.cbstatus.Text) + "')";
                         SqlConnection conDataBase = new SqlConnection(constring);
                         SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
                         SqlDataReader myreader;
@@ -132,7 +141,7 @@ namespace ProjectB
                     {
                         SqlConnection connection = new SqlConnection(constring);
                         connection.Open();
-                        string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + txtStatus.Text + "' Where Id ='" + id + "' ";
+                        string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + fun(cbstatus.Text) + "' Where Id ='" + id + "' ";
                         //
                         SqlCommand cmd = new SqlCommand(Qeury, connection);
                         cmd.ExecuteNonQuery();
@@ -221,6 +230,10 @@ namespace ProjectB
                 MessageBox.Show("Number cannot be larger than 11");
 
             }
+            if(txtContact.Text.Length < 11)
+            {
+                MessageBox.Show("Number should contain 11 digits");
+            }
         }
 
         private void txtRegistrationNumber_TextChanged(object sender, EventArgs e)
@@ -243,13 +256,7 @@ namespace ProjectB
 
     private void txtStatus_TextChanged(object sender, EventArgs e)
     {
-        foreach (char a in txtStatus.Text)
-        {
-            if (char.IsLetter(a) || char.IsPunctuation(a) || char.IsSymbol(a))
-            {
-                MessageBox.Show("Invalid Status");
-            }
-        }
+        //
     }
 
     private void button1_Click(object sender, EventArgs e)
@@ -293,7 +300,20 @@ namespace ProjectB
                 txtContact.Text = dataStudent.Rows[e.RowIndex].Cells[3].FormattedValue.ToString();
                 txtEmail.Text = dataStudent.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
                 txtRegistrationNumber.Text = dataStudent.Rows[e.RowIndex].Cells[5].FormattedValue.ToString();
-                txtStatus.Text = dataStudent.Rows[e.RowIndex].Cells[6].FormattedValue.ToString();
+
+                int val = 0;
+
+                val = Convert.ToInt32(dataStudent.Rows[e.RowIndex].Cells[6].FormattedValue.ToString());
+
+                if (val == 5)
+                {
+                    cbstatus.Text = "Active";
+                }
+                else
+                {
+                    cbstatus.Text = "InActive";
+                }
+                
                 cmdAdd.Text = "Update";
                 
 
@@ -312,7 +332,7 @@ namespace ProjectB
         {
             SqlConnection connection = new SqlConnection(constring);
             connection.Open();
-            string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + txtStatus.Text + "' Where Id ='"+id+"' ";
+            string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + fun(cbstatus.Text) + "' Where Id ='"+id+"' ";
             //
             SqlCommand cmd = new SqlCommand(Qeury, connection);
             cmd.ExecuteNonQuery();

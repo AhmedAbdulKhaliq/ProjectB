@@ -145,6 +145,7 @@
             this.txtDetails.Name = "txtDetails";
             this.txtDetails.Size = new System.Drawing.Size(100, 20);
             this.txtDetails.TabIndex = 2;
+            this.txtDetails.TextChanged += new System.EventHandler(this.txtDetails_TextChanged);
             // 
             // txtRubricId
             // 
@@ -152,6 +153,7 @@
             this.txtRubricId.Name = "txtRubricId";
             this.txtRubricId.Size = new System.Drawing.Size(100, 20);
             this.txtRubricId.TabIndex = 0;
+            this.txtRubricId.TextChanged += new System.EventHandler(this.txtRubricId_TextChanged);
             // 
             // tab2
             // 

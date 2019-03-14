@@ -154,5 +154,28 @@ namespace ProjectB
             
             
         }
+
+        private void txtRubricId_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtRubricId.Text)
+            {
+                if (!char.IsDigit(a))
+                {
+                    MessageBox.Show("Invalid Id");
+                }
+            }
+        }
+
+        private void txtDetails_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtDetails.Text)
+            {
+                if (a =='_' || a == '-' || a== '@')
+                {
+                    MessageBox.Show("Invalid Rubric Details ");
+                }
+            }
+
+        }
     }
 }

@@ -101,6 +101,12 @@ namespace ProjectB
                 this.dataClo.Rows.RemoveAt(e.RowIndex);
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataClo.Rows[row].Cells[0].Value);
+                string Qeury1 = "Delete from dbo.Rubric where CloId = '" + id + "'";
+                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                cmd1.ExecuteNonQuery();
+                MessageBox.Show("data has been deleted");
+
+
                 string Qeury = "Delete from dbo.Clo where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
@@ -126,6 +132,17 @@ namespace ProjectB
         private void cmdUpdate_Click(object sender, EventArgs e)
         {
             
+        }
+
+        private void txtCloName_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtCloName.Text)
+            {
+                if (char.IsDigit(a) || char.IsNumber(a) || char.IsPunctuation(a) || char.IsSymbol(a))
+                {
+                    MessageBox.Show("Invalid CLO name");
+                }
+            }
         }
     }
 }
