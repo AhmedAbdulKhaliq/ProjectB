@@ -57,6 +57,7 @@ namespace ProjectB
                     sqlDA.Fill(dtbl);
 
                     dataClo.DataSource = dtbl;
+                    txtCloName.Text = "";
                 }
 
 
@@ -118,20 +119,22 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataClo.Columns["delete"].Index)
             {
-                this.dataClo.Rows.RemoveAt(e.RowIndex);
-                // int row = e.RowIndex;
-                //int id = Convert.ToInt32(dataClo.Rows[e.RowIndex].Cells[0].Value);
-                string id1 = dataClo.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
-                id = Convert.ToInt32(id1); 
+                
+                int row = e.RowIndex;
+                int id = Convert.ToInt32(dataClo.Rows[row].Cells[0].Value);
+                //string id1 = dataClo.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+                //id = Convert.ToInt32(id1); 
                 string Qeury1 = "Delete from dbo.Rubric where CloId = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
                 cmd1.ExecuteNonQuery();
-                MessageBox.Show("Rubric has been deleted");
+                
+                //MessageBox.Show("Rubric has been deleted");
 
 
                 string Qeury = "Delete from dbo.Clo where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
+                this.dataClo.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("CLO has been deleted");
             }
             if (e.ColumnIndex == dataClo.Columns["edit"].Index)

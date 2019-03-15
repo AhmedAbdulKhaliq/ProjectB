@@ -60,30 +60,57 @@ namespace ProjectB
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            bool flag = false;
             if(button1.Text =="Add Rubric")
             {
-                string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text + "','" + this.comboCloNo.Text + "')";
-                SqlConnection conDataBase = new SqlConnection(constring);
-                SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                SqlDataReader myreader;
-                conDataBase.Open();
-                myreader = cmdDataBase.ExecuteReader();
-                MessageBox.Show("Rubric has been Saved");
-                while (myreader.Read())
+                if(txtDetails.Text == "")
                 {
+                    MessageBox.Show("Rubric details cannot be null");
+                    flag = true;
 
                 }
-                using (SqlConnection sqlcon = new SqlConnection(constring))
+                if (comboCloNo.Text == "")
                 {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
+                    MessageBox.Show("CLOID cannot be null");
+                    flag = true;
 
-                    dataRubric.DataSource = dtbl;
                 }
-                AddRubric.Hide();
-                tab2.Show();
+                if (txtRubricId.Text == "")
+                {
+                    MessageBox.Show("Rubric ID cannot be null");
+                    flag = true;
+
+                }
+                if(flag == false)
+                {
+                    string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text + "','" + this.comboCloNo.Text + "')";
+                    SqlConnection conDataBase = new SqlConnection(constring);
+                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                    SqlDataReader myreader;
+                    conDataBase.Open();
+                    myreader = cmdDataBase.ExecuteReader();
+                    MessageBox.Show("Rubric has been Saved");
+                    txtRubricId.Text = "";
+                    txtDetails.Text = "";
+                    comboCloNo.Text = "";
+                    while (myreader.Read())
+                    {
+
+                    }
+                    using (SqlConnection sqlcon = new SqlConnection(constring))
+                    {
+                        sqlcon.Open();
+                        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
+                        DataTable dtbl = new DataTable();
+                        sqlDA.Fill(dtbl);
+
+                        dataRubric.DataSource = dtbl;
+                    }
+                    AddRubric.Hide();
+                    tab2.Show();
+
+                }
+
 
             }
             if(button1.Text == "Update")
@@ -136,12 +163,13 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataRubric.Columns["delete"].Index)
             {
-                this.dataRubric.Rows.RemoveAt(e.RowIndex);
+                
                 int row = e.RowIndex;
                 id = Convert.ToInt32(dataRubric.Rows[e.RowIndex].Cells[0].Value);
                 string Qeury = "Delete from dbo.Rubric where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
+                this.dataRubric.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("Rubric has been deleted");
             }
             if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
@@ -186,10 +214,7 @@ namespace ProjectB
                     MessageBox.Show("The Id you entered is Invalid");
                 }
             }
-            if(txtRubricId.Text == "")
-            {
-                MessageBox.Show("Rubric cannot be null");
-            }
+            
         }
         /// <summary>
         /// This fn. checks that the details should not contain @ and -
@@ -206,10 +231,10 @@ namespace ProjectB
                     MessageBox.Show("Invalid Rubric Details ");
                 }
             }
-            if(txtDetails.Text== "")
+           /* if(txtDetails.Text== "")
             {
                 MessageBox.Show("Details cannot be null");
-            }
+            }*/
 
         }
         /// <summary>
@@ -220,11 +245,11 @@ namespace ProjectB
 
         private void comboCloNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (comboCloNo.Text == "")
-            {
-                MessageBox.Show("Clo cannot be null");
+            //if (comboCloNo.Text == "")
+            //{
+              //  MessageBox.Show("Clo cannot be null");
 
-            }
+            //}
 
         }
     }

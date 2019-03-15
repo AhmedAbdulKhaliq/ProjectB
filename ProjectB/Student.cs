@@ -196,9 +196,16 @@ namespace ProjectB
 
                             dataStudent.DataSource = dtbl;
                         }
+                        txtFirstName.Text = " ";
+                        txtLastName.Text = "";
+                        txtEmail.Text = "";
+                        txtContact.Text = "";
+                        txtRegistrationNumber.Text = "";
+                        cbstatus.Text = "";
+
 
                     }
-                    if(cmdAdd.Text == "Update")
+                    if (cmdAdd.Text == "Update")
                     {
                         SqlConnection connection = new SqlConnection(constring);
                         connection.Open();
@@ -369,12 +376,14 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataStudent.Columns["delete"].Index)
             {
-                this.dataStudent.Rows.RemoveAt(e.RowIndex);
+                
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataStudent.Rows[row].Cells[0].Value);
+                
                 string Qeury = "Delete from dbo.student where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
+                this.dataStudent.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("Sudent Information has been deleted");
             }
             if (e.ColumnIndex == dataStudent.Columns["edit"].Index)
