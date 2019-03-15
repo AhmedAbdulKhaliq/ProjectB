@@ -38,26 +38,37 @@ namespace ProjectB
         {
             if (cmdAddClo.Text == "Add")
             {
-                string qeury = "insert into dbo.Clo( Name,DateCreated,DateUpdated) values('" + this.txtCloName.Text + "','" + DateTime.Now + "','" + DateTime.Now + "')";
-                SqlConnection conDataBase = new SqlConnection(constring);
-                SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                SqlDataReader myreader;
-                conDataBase.Open();
-                myreader = cmdDataBase.ExecuteReader();
-                MessageBox.Show("CLO has been Saved");
-                while (myreader.Read())
+                bool flag = false;
+                if (txtCloName.Text == "")
                 {
+                    MessageBox.Show("Clo name canot be null");
 
+                    flag = true;
                 }
-                using (SqlConnection sqlcon = new SqlConnection(constring))
+                if(flag== false)
                 {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Clo", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
+                    string qeury = "insert into dbo.Clo( Name,DateCreated,DateUpdated) values('" + this.txtCloName.Text + "','" + DateTime.Now + "','" + DateTime.Now + "')";
+                    SqlConnection conDataBase = new SqlConnection(constring);
+                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                    SqlDataReader myreader;
+                    conDataBase.Open();
+                    myreader = cmdDataBase.ExecuteReader();
+                    MessageBox.Show("CLO has been Saved");
+                    while (myreader.Read())
+                    {
 
-                    dataClo.DataSource = dtbl;
-                    txtCloName.Text = "";
+                    }
+                    using (SqlConnection sqlcon = new SqlConnection(constring))
+                    {
+                        sqlcon.Open();
+                        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Clo", sqlcon);
+                        DataTable dtbl = new DataTable();
+                        sqlDA.Fill(dtbl);
+
+                        dataClo.DataSource = dtbl;
+                        txtCloName.Text = "";
+                    }
+
                 }
 
 
@@ -174,10 +185,10 @@ namespace ProjectB
                     MessageBox.Show("The CLO name you entered is Invalid");
                 }
             }
-            if (txtCloName.Text == "")
-            {
-                MessageBox.Show("Clo Name cannt be null");
-            }
+            //if (txtCloName.Text == "")
+            //{
+              //  MessageBox.Show("Clo Name cannt be null");
+            //}
         }
     }
 }
