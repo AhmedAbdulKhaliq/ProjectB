@@ -35,7 +35,7 @@ namespace ProjectB
                 SqlDataReader myreader;
                 conDataBase.Open();
                 myreader = cmdDataBase.ExecuteReader();
-                MessageBox.Show("Saved");
+                MessageBox.Show("CLO has been Saved");
                 while (myreader.Read())
                 {
 
@@ -60,8 +60,9 @@ namespace ProjectB
                 //
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("Data Updated");
+                MessageBox.Show("CLo has been Updated");
                 cmdAddClo.Text = "Add";
+                txtCloName.Text = "";
                 using (SqlConnection sqlcon = new SqlConnection(constring))
                 {
                     sqlcon.Open();
@@ -104,13 +105,13 @@ namespace ProjectB
                 string Qeury1 = "Delete from dbo.Rubric where CloId = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
                 cmd1.ExecuteNonQuery();
-                MessageBox.Show("data has been deleted");
+                MessageBox.Show("Rubric has been deleted");
 
 
                 string Qeury = "Delete from dbo.Clo where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("data has been deleted");
+                MessageBox.Show("CLO has been deleted");
             }
             if (e.ColumnIndex == dataClo.Columns["edit"].Index)
             {
@@ -140,8 +141,12 @@ namespace ProjectB
             {
                 if (char.IsDigit(a) || char.IsNumber(a) || char.IsPunctuation(a) || char.IsSymbol(a))
                 {
-                    MessageBox.Show("Invalid CLO name");
+                    MessageBox.Show("The CLO name you entered is Invalid");
                 }
+            }
+            if (txtCloName.Text == "")
+            {
+                MessageBox.Show("Clo Name cannt be null");
             }
         }
     }

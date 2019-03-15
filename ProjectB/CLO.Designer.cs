@@ -32,16 +32,16 @@
             this.label2 = new System.Windows.Forms.Label();
             this.txtCloName = new System.Windows.Forms.TextBox();
             this.dataClo = new System.Windows.Forms.DataGridView();
-            this.cloBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.projectBDataSet1 = new ProjectB.ProjectBDataSet1();
-            this.cloTableAdapter = new ProjectB.ProjectBDataSet1TableAdapters.CloTableAdapter();
-            this.cmdAddClo = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateCreatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.dateUpdatedDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.cloBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet1 = new ProjectB.ProjectBDataSet1();
+            this.cloTableAdapter = new ProjectB.ProjectBDataSet1TableAdapters.CloTableAdapter();
+            this.cmdAddClo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataClo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cloBindingSource)).BeginInit();
@@ -89,31 +89,6 @@
             this.dataClo.Size = new System.Drawing.Size(562, 165);
             this.dataClo.TabIndex = 8;
             this.dataClo.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataClo_CellContentClick);
-            // 
-            // cloBindingSource
-            // 
-            this.cloBindingSource.DataMember = "Clo";
-            this.cloBindingSource.DataSource = this.projectBDataSet1;
-            // 
-            // projectBDataSet1
-            // 
-            this.projectBDataSet1.DataSetName = "ProjectBDataSet1";
-            this.projectBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // cloTableAdapter
-            // 
-            this.cloTableAdapter.ClearBeforeFill = true;
-            // 
-            // cmdAddClo
-            // 
-            this.cmdAddClo.BackColor = System.Drawing.SystemColors.ScrollBar;
-            this.cmdAddClo.Location = new System.Drawing.Point(126, 75);
-            this.cmdAddClo.Name = "cmdAddClo";
-            this.cmdAddClo.Size = new System.Drawing.Size(75, 34);
-            this.cmdAddClo.TabIndex = 9;
-            this.cmdAddClo.Text = "Add";
-            this.cmdAddClo.UseVisualStyleBackColor = false;
-            this.cmdAddClo.Click += new System.EventHandler(this.cmdAddClo_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -166,6 +141,31 @@
             this.Delete.ToolTipText = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
+            // cloBindingSource
+            // 
+            this.cloBindingSource.DataMember = "Clo";
+            this.cloBindingSource.DataSource = this.projectBDataSet1;
+            // 
+            // projectBDataSet1
+            // 
+            this.projectBDataSet1.DataSetName = "ProjectBDataSet1";
+            this.projectBDataSet1.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // cloTableAdapter
+            // 
+            this.cloTableAdapter.ClearBeforeFill = true;
+            // 
+            // cmdAddClo
+            // 
+            this.cmdAddClo.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdAddClo.Location = new System.Drawing.Point(126, 75);
+            this.cmdAddClo.Name = "cmdAddClo";
+            this.cmdAddClo.Size = new System.Drawing.Size(75, 34);
+            this.cmdAddClo.TabIndex = 9;
+            this.cmdAddClo.Text = "Add";
+            this.cmdAddClo.UseVisualStyleBackColor = false;
+            this.cmdAddClo.Click += new System.EventHandler(this.cmdAddClo_Click);
+            // 
             // label1
             // 
             this.label1.AutoSize = true;
@@ -190,7 +190,7 @@
             this.Controls.Add(this.txtCloName);
             this.Controls.Add(this.label2);
             this.Name = "CLO";
-            this.Text = "CLO";
+            this.Text = "m";
             this.Load += new System.EventHandler(this.CLO_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataClo)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.cloBindingSource)).EndInit();

@@ -18,14 +18,19 @@ namespace ProjectB
             InitializeComponent();
         }
         string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
-
+        /// <summary>
+        /// This function is used to check the validations that the name should not
+        /// contain number,symbols or any puntucation moreover it canot be null.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtLastName_TextChanged(object sender, EventArgs e)
         {
             foreach (char a in txtLastName.Text)
             {
                 if (char.IsDigit(a) || char.IsNumber(a) || char.IsPunctuation(a) || char.IsSymbol(a))
                 {
-                    MessageBox.Show("Invalid name");
+                    MessageBox.Show("The Last name you entered is Invalid");
                 }
             }
 
@@ -48,9 +53,24 @@ namespace ProjectB
             }
             return 6;
         }
+        /// <summary>
+        /// /// <summary>
+        /// This function is used to check the validations that the reg number should not
+        /// be format free.Its format should be like 2016-cs-106. It cannot be null.
+        /// it also checks that the email is formatted and it should not be null. 
+        /// If all validations are not violated than The data is added into The Student 
+        /// table. and Message is showed. and after this if we edit it the add button text 
+        /// is changed into Update and data is updated in that table.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
+            
             try
             {
                 char[] aa = new char[txtRegistrationNumber.Text.Length];
@@ -66,7 +86,7 @@ namespace ProjectB
                 {
                     if (char.IsDigit(aa[j]) == false)
                     {
-                        MessageBox.Show("Invalid!3");
+                        MessageBox.Show("Invalid Reg No. The correct Syntax is YYYY-XX-NNN");
                         flag = true;
                         break;
                     }
@@ -75,19 +95,24 @@ namespace ProjectB
                 {
                     if (aa[4] != '-' || aa[7] != '-')
                     {
-                        MessageBox.Show("Invalid2!");
+                        MessageBox.Show("Invalid Reg No. The correct Syntax is YYYY-XX-NNN");
                         flag = true;
                     }
                     else if (char.IsDigit(aa[5]) || char.IsDigit(aa[6]))
                     {
-                        MessageBox.Show("Invalid1!");
+                        MessageBox.Show("Invalid Reg No. The correct Syntax is YYYY-XX-NNN");
                         flag = true;
                     }
                     else if (!char.IsDigit(aa[8]) || !char.IsDigit(aa[9]) || !char.IsDigit(aa[10]))
                     {
-                        MessageBox.Show("Invalid 0!");
+                        MessageBox.Show("Invalid Reg No. The correct Syntax is YYYY-XX-NNN!");
                         flag = true;
                     }
+                }
+                if (txtContact.Text.Length < 11)
+                {
+                    MessageBox.Show("Number should contain 11 digits");
+                    flag = true;
                 }
 
                 int countdot = 0;
@@ -106,8 +131,43 @@ namespace ProjectB
 
                 if (countdot != 1 || countAt != 1)
                 {
-                    MessageBox.Show("Invalidaha!");
+                    MessageBox.Show("Invalid Email.Email should cotain @ and .");
                     flag = true;
+                }
+                if (txtFirstName.Text == "")
+                {
+                    MessageBox.Show("Name cannot be null");
+                    flag = true;
+                }
+                if(txtLastName.Text == "")
+                {
+                    MessageBox.Show("Name cannot be null");
+                    flag = true;
+
+                }
+                if (txtRegistrationNumber.Text == "")
+                {
+                    MessageBox.Show("Reg No. cannot be null");
+                    flag = true;
+
+                }
+                if (txtContact.Text == "")
+                {
+                    MessageBox.Show("Contact cannot be null");
+                    flag = true;
+
+                }
+                if (txtEmail.Text == "")
+                {
+                    MessageBox.Show("Email cannot be null");
+                    flag = true;
+
+                }
+                if (cbstatus.Text == "")
+                {
+                    MessageBox.Show("Status cannot be null");
+                    flag = true;
+
                 }
 
 
@@ -117,11 +177,12 @@ namespace ProjectB
                     {
                         string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + fun(this.cbstatus.Text) + "')";
                         SqlConnection conDataBase = new SqlConnection(constring);
+
                         SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
                         SqlDataReader myreader;
                         conDataBase.Open();
                         myreader = cmdDataBase.ExecuteReader();
-                        MessageBox.Show("Saved");
+                        MessageBox.Show("Student information Stored");
                         while (myreader.Read())
                         {
 
@@ -145,8 +206,17 @@ namespace ProjectB
                         //
                         SqlCommand cmd = new SqlCommand(Qeury, connection);
                         cmd.ExecuteNonQuery();
-                        MessageBox.Show("Data Updated");
+                        MessageBox.Show("Student Information Updated");
                         cmdAdd.Text = "Add";
+                        txtFirstName.Text = " ";
+                        txtLastName.Text = "";
+                        txtEmail.Text = "";
+                        txtContact.Text = "";
+                        txtRegistrationNumber.Text = "";
+                        cbstatus.Text = "";
+
+
+
                         using (SqlConnection sqlcon = new SqlConnection(constring))
                         {
                             sqlcon.Open();
@@ -199,6 +269,12 @@ namespace ProjectB
             */
 
         }
+        /// <summary>
+        /// This function is used to check the validations that the name should not
+        /// contain number,symbols or any puntucation moreover it canot be null.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void txtFirstName_TextChanged(object sender, EventArgs e)
         {
@@ -206,15 +282,23 @@ namespace ProjectB
             {
                 if (char.IsDigit(a) || char.IsNumber(a) || char.IsPunctuation(a) || char.IsSymbol(a))
                 {
-                    MessageBox.Show("Invalid name");
+                    MessageBox.Show( "The First name you entered is Invalid");
                 }
             }
+           
         }
 
         private void maskedTextBox1_MaskInputRejected(object sender, MaskInputRejectedEventArgs e)
         {
 
         }
+        /// <summary>
+        /// This function is used to check the validations that the contact should not
+        /// contain letters,symbols or any puntucation moreover it canot be null. Its lenghth s
+        /// should be 11.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void txtContact_TextChanged(object sender, EventArgs e)
         {
@@ -222,7 +306,7 @@ namespace ProjectB
             {
                 if (char.IsLetter(a) || char.IsPunctuation(a) || char.IsSymbol(a))
                 {
-                    MessageBox.Show("Invalid contact");
+                    MessageBox.Show("The contact you entered is Invalid");
                 }
             }
             if (txtContact.Text.Length > 11)
@@ -230,10 +314,7 @@ namespace ProjectB
                 MessageBox.Show("Number cannot be larger than 11");
 
             }
-            if(txtContact.Text.Length < 11)
-            {
-                MessageBox.Show("Number should contain 11 digits");
-            }
+            
         }
 
         private void txtRegistrationNumber_TextChanged(object sender, EventArgs e)
@@ -272,6 +353,15 @@ namespace ProjectB
         }
     }
 
+        /// <summary>
+        /// This function has two parts.One if cell content column is delete than the
+        /// data from Student table where given id is id of that row which is selected is Data grid 
+        /// view is deleted from student table. The other if is that if the cell text you clicked is edit it
+        /// places the columns text of this row to thier respective text boxes so that they
+        ///  can be updated and edited
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
     private void dataStudent_CellContentClick(object sender, DataGridViewCellEventArgs e)
     {
 
@@ -285,7 +375,7 @@ namespace ProjectB
                 string Qeury = "Delete from dbo.student where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("data has been deleted");
+                MessageBox.Show("Sudent Information has been deleted");
             }
             if (e.ColumnIndex == dataStudent.Columns["edit"].Index)
             {
@@ -340,6 +430,11 @@ namespace ProjectB
 
 
 
+
+        }
+
+        private void cbstatus_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }

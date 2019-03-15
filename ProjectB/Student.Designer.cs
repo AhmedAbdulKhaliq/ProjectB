@@ -310,6 +310,7 @@
             this.cbstatus.Name = "cbstatus";
             this.cbstatus.Size = new System.Drawing.Size(121, 23);
             this.cbstatus.TabIndex = 16;
+            this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
             // 
             // label1
             // 

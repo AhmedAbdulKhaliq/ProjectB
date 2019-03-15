@@ -40,15 +40,15 @@
             this.txtRubricId = new System.Windows.Forms.TextBox();
             this.tab2 = new System.Windows.Forms.TabPage();
             this.dataRubric = new System.Windows.Forms.DataGridView();
-            this.rubricBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.projectBDataSet3 = new ProjectB.ProjectBDataSet3();
-            this.rubricTableAdapter = new ProjectB.ProjectBDataSet3TableAdapters.RubricTableAdapter();
-            this.label4 = new System.Windows.Forms.Label();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.cloIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.rubricBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet3 = new ProjectB.ProjectBDataSet3();
+            this.rubricTableAdapter = new ProjectB.ProjectBDataSet3TableAdapters.RubricTableAdapter();
+            this.label4 = new System.Windows.Forms.Label();
             this.ShowRubric.SuspendLayout();
             this.AddRubric.SuspendLayout();
             this.tab2.SuspendLayout();
@@ -142,6 +142,7 @@
             this.comboCloNo.Name = "comboCloNo";
             this.comboCloNo.Size = new System.Drawing.Size(196, 21);
             this.comboCloNo.TabIndex = 3;
+            this.comboCloNo.SelectedIndexChanged += new System.EventHandler(this.comboCloNo_SelectedIndexChanged);
             // 
             // txtDetails
             // 
@@ -191,32 +192,6 @@
             this.dataRubric.TabIndex = 0;
             this.dataRubric.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataRubric_CellContentClick);
             // 
-            // rubricBindingSource
-            // 
-            this.rubricBindingSource.DataMember = "Rubric";
-            this.rubricBindingSource.DataSource = this.projectBDataSet3;
-            // 
-            // projectBDataSet3
-            // 
-            this.projectBDataSet3.DataSetName = "ProjectBDataSet3";
-            this.projectBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // rubricTableAdapter
-            // 
-            this.rubricTableAdapter.ClearBeforeFill = true;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.ForeColor = System.Drawing.Color.Black;
-            this.label4.Location = new System.Drawing.Point(285, 12);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(96, 20);
-            this.label4.TabIndex = 18;
-            this.label4.Text = "Rubric Form";
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -257,6 +232,32 @@
             this.Edit.Text = "Edit";
             this.Edit.ToolTipText = "Edit";
             this.Edit.UseColumnTextForButtonValue = true;
+            // 
+            // rubricBindingSource
+            // 
+            this.rubricBindingSource.DataMember = "Rubric";
+            this.rubricBindingSource.DataSource = this.projectBDataSet3;
+            // 
+            // projectBDataSet3
+            // 
+            this.projectBDataSet3.DataSetName = "ProjectBDataSet3";
+            this.projectBDataSet3.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // rubricTableAdapter
+            // 
+            this.rubricTableAdapter.ClearBeforeFill = true;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.ForeColor = System.Drawing.Color.Black;
+            this.label4.Location = new System.Drawing.Point(285, 12);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(96, 20);
+            this.label4.TabIndex = 18;
+            this.label4.Text = "Rubric Form";
             // 
             // Rubric
             // 

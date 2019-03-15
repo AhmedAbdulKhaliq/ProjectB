@@ -54,7 +54,7 @@ namespace ProjectB
                 SqlDataReader myreader;
                 conDataBase.Open();
                 myreader = cmdDataBase.ExecuteReader();
-                MessageBox.Show("Saved");
+                MessageBox.Show("Rubric has been Saved");
                 while (myreader.Read())
                 {
 
@@ -81,8 +81,11 @@ namespace ProjectB
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
                 
-                MessageBox.Show("Data Updated");
+                MessageBox.Show("Rubric is  Updated");
                 button1.Text = "Add Rubric";
+                txtRubricId.Text = "";
+                txtDetails.Text = "";
+                comboCloNo.Text = "";
                 AddRubric.Hide();
                 tab2.Show();
                 using (SqlConnection sqlcon = new SqlConnection(constring))
@@ -125,7 +128,7 @@ namespace ProjectB
                 string Qeury = "Delete from dbo.Rubric where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                MessageBox.Show("data has been deleted");
+                MessageBox.Show("Rubric has been deleted");
             }
             if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
             {
@@ -161,8 +164,12 @@ namespace ProjectB
             {
                 if (!char.IsDigit(a))
                 {
-                    MessageBox.Show("Invalid Id");
+                    MessageBox.Show("The Id you entered is Invalid");
                 }
+            }
+            if(txtRubricId.Text == "")
+            {
+                MessageBox.Show("Rubric cannot be null");
             }
         }
 
@@ -174,6 +181,20 @@ namespace ProjectB
                 {
                     MessageBox.Show("Invalid Rubric Details ");
                 }
+            }
+            if(txtDetails.Text== "")
+            {
+                MessageBox.Show("Details cannot be null");
+            }
+
+        }
+
+        private void comboCloNo_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (comboCloNo.Text == "")
+            {
+                MessageBox.Show("Clo cannot be null");
+
             }
 
         }
