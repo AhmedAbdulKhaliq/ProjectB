@@ -24,6 +24,15 @@ namespace ProjectB
             this.cloTableAdapter.Fill(this.projectBDataSet1.Clo);
 
         }
+        /// <summary>
+        ///   
+        /// This fuction if the button text is Add take the values from text boxe txtcloname and save it in Clo table in
+        /// DB.It also stores the date created by datetime.mow method and same for date upated.
+        /// but if the button text is Updte it updates the values in txt box txtcloname and Name
+        /// column of Clo table. It donot update the date created but it updates the date updated in
+        /// Clo table.
+        /// </summary>
+        /// 
 
         private void cmdAddClo_Click(object sender, EventArgs e)
         {
@@ -92,6 +101,16 @@ namespace ProjectB
                 dataClo.DataSource = dtbl;
             }
         }
+        /// <summary>
+        /// This function also works int two parts. This is cell content click based 
+        /// function.If the cell on which we click has a button with text delete than this
+        /// function deletes the Clo information from Clo table where the id is equal
+        /// to the id of row we clicked on. The other part of the function works if the button text
+        /// is edit. The function than loads the values of columns of row selected or clicke to respective 
+        /// text boxes i.e Name to txtCloname textbox so tht they can update the value.
+        /// 
+        /// </summary>
+        /// 
 
         private void dataClo_CellContentClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -100,8 +119,10 @@ namespace ProjectB
             if (e.ColumnIndex == dataClo.Columns["delete"].Index)
             {
                 this.dataClo.Rows.RemoveAt(e.RowIndex);
-                int row = e.RowIndex;
-                int id = Convert.ToInt32(dataClo.Rows[row].Cells[0].Value);
+                // int row = e.RowIndex;
+                //int id = Convert.ToInt32(dataClo.Rows[e.RowIndex].Cells[0].Value);
+                string id1 = dataClo.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+                id = Convert.ToInt32(id1); 
                 string Qeury1 = "Delete from dbo.Rubric where CloId = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
                 cmd1.ExecuteNonQuery();
@@ -134,6 +155,12 @@ namespace ProjectB
         {
             
         }
+        /// <summary>
+        ///This function is used to check the validations that the name should not
+        /// contain number,symbols or any puntucation moreover it canot be null 
+        ///
+        /// </summary>
+        /// 
 
         private void txtCloName_TextChanged(object sender, EventArgs e)
         {

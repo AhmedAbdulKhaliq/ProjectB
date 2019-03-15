@@ -25,6 +25,13 @@ namespace ProjectB
 
         }
 
+        /// <summary>
+        /// This fn do what is this that it loads the clo id into the combobox
+        /// cmbcloid when ever this form is loaded.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+
         private void Rubric_Load(object sender, EventArgs e)
         {
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
@@ -44,6 +51,13 @@ namespace ProjectB
 
         }
 
+        /// <summary>
+        /// This fn. is also in two parts. It also do two things one is that ifthe
+        /// btn text is add than it adds the dta to the rubric table and if it 
+        /// is ipdate it updates the data.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
             if(button1.Text =="Add Rubric")
@@ -124,7 +138,7 @@ namespace ProjectB
             {
                 this.dataRubric.Rows.RemoveAt(e.RowIndex);
                 int row = e.RowIndex;
-                id = Convert.ToInt32(dataRubric.Rows[row].Cells[0].Value);
+                id = Convert.ToInt32(dataRubric.Rows[e.RowIndex].Cells[0].Value);
                 string Qeury = "Delete from dbo.Rubric where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
@@ -157,6 +171,11 @@ namespace ProjectB
             
             
         }
+        /// <summary>
+        /// It checks that the Rubric ID should be int not any charcter,symbol
+        /// letter or punctuation. Moreover it should not be null.
+        /// </summary>
+        /// 
 
         private void txtRubricId_TextChanged(object sender, EventArgs e)
         {
@@ -172,7 +191,12 @@ namespace ProjectB
                 MessageBox.Show("Rubric cannot be null");
             }
         }
-
+        /// <summary>
+        /// This fn. checks that the details should not contain @ and -
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void txtDetails_TextChanged(object sender, EventArgs e)
         {
             foreach (char a in txtDetails.Text)
@@ -188,6 +212,11 @@ namespace ProjectB
             }
 
         }
+        /// <summary>
+        /// This fn. checks that the clo combo box should not be empty.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
 
         private void comboCloNo_SelectedIndexChanged(object sender, EventArgs e)
         {
