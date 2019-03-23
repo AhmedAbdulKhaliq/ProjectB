@@ -78,6 +78,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectBDataSet3.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectBDataSet4.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectBDataSet4.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Rubric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -156,6 +161,17 @@
     </None>
     <None Include="ProjectBDataSet3.xss">
       <DependentUpon>ProjectBDataSet3.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectBDataSet4.xsc">
+      <DependentUpon>ProjectBDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectBDataSet4.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectBDataSet4.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectBDataSet4.xss">
+      <DependentUpon>ProjectBDataSet4.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

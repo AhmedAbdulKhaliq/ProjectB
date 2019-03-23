@@ -34,6 +34,8 @@ namespace ProjectB
 
         private void Rubric_Load(object sender, EventArgs e)
         {
+            // TODO: This line of code loads data into the 'projectBDataSet4.RubricLevel' table. You can move, or remove it, as needed.
+            this.rubricLevelTableAdapter.Fill(this.projectBDataSet4.RubricLevel);
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
             this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
             string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
@@ -46,8 +48,27 @@ namespace ProjectB
             while(reader.Read())
             {
                 comboCloNo.Items.Add(reader[0]);
+               
+              
+                  
             }
             cmd.Close();
+            this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
+            string con = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
+            SqlConnection cmd2 = new SqlConnection(con);
+            cmd2.Open();
+            String c = "SELECT Id FROM Rubric";
+            SqlCommand com = new SqlCommand(c, cmd2);
+            com.Parameters.Add(new SqlParameter("0", 1));
+            SqlDataReader reader1 = com.ExecuteReader();
+            while (reader1.Read())
+            {
+                //comboCloNo.Items.Add(reader[0]);
+                //cmbCloID.Items.Add(reader[0]);
+                cmbRubricID.Items.Add(reader1[0]);
+            }
+            cmd2.Close();
+
 
         }
 
@@ -251,6 +272,124 @@ namespace ProjectB
 
             //}
 
+        }
+
+        private void tabPage1_Click_1(object sender, EventArgs e)
+        {
+
+        }
+
+        private void comboBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void cmdAddLevel_Click(object sender, EventArgs e)
+        {
+            if(cmdAddLevel.Text == "Add")
+            {
+
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    string qeury = "insert into dbo.RubricLevel(RubricId,Details,MeasurementLevel) values('" + this.cmbRubricID.Text + "','" + this.txtDetRubric.Text + "','" + this.txtRubricLevel.Text + "')";
+                    SqlConnection conDataBase = new SqlConnection(constring);
+
+                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                    SqlDataReader myreader;
+                    conDataBase.Open();
+                    myreader = cmdDataBase.ExecuteReader();
+                    MessageBox.Show("Rubric Level Added");
+                    while (myreader.Read())
+                    {
+
+                    }
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataGridView1.DataSource = dtbl;
+                    cmbRubricID.Text = "";
+                    txtDetRubric.Text = "";
+                    txtRubricLevel.Text = "";
+
+
+
+
+                }
+
+
+            }
+            if (cmdAddLevel.Text == "Update")
+            {
+                SqlConnection connection = new SqlConnection(constring);
+                connection.Open();
+                string Qeury = "Update dbo.RubricLevel Set RubricId      ='" + cmbRubricID.Text + "',Details ='" + txtDetRubric.Text + "',MeasurementLevel ='" + txtRubricLevel.Text + "' Where Id ='" + id + "' ";
+                //
+                SqlCommand cmd = new SqlCommand(Qeury, connection);
+                cmd.ExecuteNonQuery();
+                MessageBox.Show("Rubric Level Information Updated");
+                
+
+
+
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataGridView1.DataSource = dtbl;
+                }
+                cmbRubricID.Text = "";
+                txtDetRubric.Text = "";
+                txtRubricLevel.Text = "";
+                cmdAddLevel.Text = "Add";
+
+
+
+
+            }
+
+
+        }
+
+        private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+            SqlConnection connection = new SqlConnection(constring);
+            connection.Open();
+            if (e.ColumnIndex == dataGridView1.Columns["Remove"].Index)
+            {
+
+                int row = e.RowIndex;
+                int id = Convert.ToInt32(dataGridView1.Rows[row].Cells[0].Value);
+
+                string Qeury = "Delete from dbo.RubricLevel where ID = '" + id + "'";
+                SqlCommand cmd = new SqlCommand(Qeury, connection);
+                cmd.ExecuteNonQuery();
+                this.dataGridView1.Rows.RemoveAt(e.RowIndex);
+                MessageBox.Show("Rubric Level has been deleted");
+            }
+            if (e.ColumnIndex == dataGridView1.Columns["Editt"].Index)
+            {
+                string temp = dataGridView1.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+                id = Convert.ToInt32(temp);
+
+
+
+
+                cmbRubricID.Text = dataGridView1.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
+                txtDetRubric.Text = dataGridView1.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
+                txtRubricLevel.Text = dataGridView1.Rows[e.RowIndex].Cells[3].FormattedValue.ToString();
+                //.Text = dataGridView1.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
+                //txtRegistrationNumber.Text = dataStudent.Rows[e.RowIndex].Cells[5].FormattedValue.ToString();
+
+                
+                cmdAddLevel.Text = "Update";
+
+
+            }
         }
     }
 }
