@@ -13,6 +13,7 @@ namespace ProjectB
     public partial class Student : Form
     {
         int id;
+        int StatusId;
         public Student()
         {
             InitializeComponent();
@@ -417,6 +418,7 @@ namespace ProjectB
                 
 
             }
+            
 
         }
 

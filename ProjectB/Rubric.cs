@@ -32,9 +32,8 @@ namespace ProjectB
         /// <param name="sender"></param>
         /// <param name="e"></param>
 
-        private void Rubric_Load(object sender, EventArgs e)
+        void UpdateValues()
         {
-            // TODO: This line of code loads data into the 'projectBDataSet4.RubricLevel' table. You can move, or remove it, as needed.
             this.rubricLevelTableAdapter.Fill(this.projectBDataSet4.RubricLevel);
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
             this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
@@ -45,14 +44,18 @@ namespace ProjectB
             SqlCommand command = new SqlCommand(s, cmd);
             command.Parameters.Add(new SqlParameter("0", 1));
             SqlDataReader reader = command.ExecuteReader();
-            while(reader.Read())
+            while (reader.Read())
             {
                 comboCloNo.Items.Add(reader[0]);
-               
-              
-                  
+
+
+
             }
             cmd.Close();
+        }
+        private void Rubric_Load(object sender, EventArgs e)
+        {
+            UpdateValues();
             this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
             string con = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd2 = new SqlConnection(con);
@@ -286,71 +289,82 @@ namespace ProjectB
 
         private void cmdAddLevel_Click(object sender, EventArgs e)
         {
-            if(cmdAddLevel.Text == "Add")
+            bool flag = false;
+            if(txtDetRubric.Text== "" || txtRubricLevel.Text == "" || cmbRubricID.Text == "")
             {
-
-                using (SqlConnection sqlcon = new SqlConnection(constring))
+                flag = true;
+                MessageBox.Show("Input cannot be Null");
+            }
+            if(flag==false)
+            {
+                if (cmdAddLevel.Text == "Add")
                 {
-                    string qeury = "insert into dbo.RubricLevel(RubricId,Details,MeasurementLevel) values('" + this.cmbRubricID.Text + "','" + this.txtDetRubric.Text + "','" + this.txtRubricLevel.Text + "')";
-                    SqlConnection conDataBase = new SqlConnection(constring);
 
-                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                    SqlDataReader myreader;
-                    conDataBase.Open();
-                    myreader = cmdDataBase.ExecuteReader();
-                    MessageBox.Show("Rubric Level Added");
-                    while (myreader.Read())
+                    using (SqlConnection sqlcon = new SqlConnection(constring))
                     {
+                        string qeury = "insert into dbo.RubricLevel(RubricId,Details,MeasurementLevel) values('" + this.cmbRubricID.Text + "','" + this.txtDetRubric.Text + "','" + this.txtRubricLevel.Text + "')";
+                        SqlConnection conDataBase = new SqlConnection(constring);
+
+                        SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                        SqlDataReader myreader;
+                        conDataBase.Open();
+                        myreader = cmdDataBase.ExecuteReader();
+                        MessageBox.Show("Rubric Level Added");
+                        while (myreader.Read())
+                        {
+
+                        }
+                        sqlcon.Open();
+                        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                        DataTable dtbl = new DataTable();
+                        sqlDA.Fill(dtbl);
+
+                        dataGridView1.DataSource = dtbl;
+                        cmbRubricID.Text = "";
+                        txtDetRubric.Text = "";
+                        txtRubricLevel.Text = "";
+
+
+
 
                     }
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
 
-                    dataGridView1.DataSource = dtbl;
+
+                }
+                if (cmdAddLevel.Text == "Update")
+                {
+                    SqlConnection connection = new SqlConnection(constring);
+                    connection.Open();
+                    string Qeury = "Update dbo.RubricLevel Set RubricId      ='" + cmbRubricID.Text + "',Details ='" + txtDetRubric.Text + "',MeasurementLevel ='" + txtRubricLevel.Text + "' Where Id ='" + id + "' ";
+                    //
+                    SqlCommand cmd = new SqlCommand(Qeury, connection);
+                    cmd.ExecuteNonQuery();
+                    MessageBox.Show("Rubric Level Information Updated");
+
+
+
+
+                    using (SqlConnection sqlcon = new SqlConnection(constring))
+                    {
+                        sqlcon.Open();
+                        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                        DataTable dtbl = new DataTable();
+                        sqlDA.Fill(dtbl);
+
+                        dataGridView1.DataSource = dtbl;
+                    }
                     cmbRubricID.Text = "";
                     txtDetRubric.Text = "";
                     txtRubricLevel.Text = "";
+                    cmdAddLevel.Text = "Add";
 
 
 
 
                 }
 
-
             }
-            if (cmdAddLevel.Text == "Update")
-            {
-                SqlConnection connection = new SqlConnection(constring);
-                connection.Open();
-                string Qeury = "Update dbo.RubricLevel Set RubricId      ='" + cmbRubricID.Text + "',Details ='" + txtDetRubric.Text + "',MeasurementLevel ='" + txtRubricLevel.Text + "' Where Id ='" + id + "' ";
-                //
-                SqlCommand cmd = new SqlCommand(Qeury, connection);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Rubric Level Information Updated");
-                
-
-
-
-                using (SqlConnection sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
-
-                    dataGridView1.DataSource = dtbl;
-                }
-                cmbRubricID.Text = "";
-                txtDetRubric.Text = "";
-                txtRubricLevel.Text = "";
-                cmdAddLevel.Text = "Add";
-
-
-
-
-            }
+            
 
 
         }
@@ -390,6 +404,38 @@ namespace ProjectB
 
 
             }
+        }
+
+        private void txtDetRubric_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtDetRubric.Text)
+            {
+                if (a == '_' || a == '-' || a == '@')
+                {
+                    MessageBox.Show("Invalid Rubric Details ");
+                }
+            }
+        }
+
+        private void txtRubricLevel_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtRubricLevel.Text)
+            {
+                if (!char.IsDigit(a))
+                {
+                    MessageBox.Show("The Id you entered is Invalid");
+                }
+            }
+        }
+
+        private void Rubric_MouseClick(object sender, MouseEventArgs e)
+        {
+            //
+        }
+
+        private void comboCloNo_MouseClick(object sender, MouseEventArgs e)
+        {
+            // UpdateValues();
         }
     }
 }

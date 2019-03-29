@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Assesment.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Assesment.Designer.cs">
+      <DependentUpon>Assesment.cs</DependentUpon>
+    </Compile>
     <Compile Include="CLO.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -83,6 +89,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>ProjectBDataSet4.xsd</DependentUpon>
     </Compile>
+    <Compile Include="ProjectBDataSet5.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>ProjectBDataSet5.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Rubric.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -97,6 +108,9 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="Assesment.resx">
+      <DependentUpon>Assesment.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CLO.resx">
       <DependentUpon>CLO.cs</DependentUpon>
     </EmbeddedResource>
@@ -172,6 +186,17 @@
     </None>
     <None Include="ProjectBDataSet4.xss">
       <DependentUpon>ProjectBDataSet4.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectBDataSet5.xsc">
+      <DependentUpon>ProjectBDataSet5.xsd</DependentUpon>
+    </None>
+    <None Include="ProjectBDataSet5.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>ProjectBDataSet5.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="ProjectBDataSet5.xss">
+      <DependentUpon>ProjectBDataSet5.xsd</DependentUpon>
     </None>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
