@@ -166,6 +166,7 @@
             this.comboCloNo.Size = new System.Drawing.Size(196, 21);
             this.comboCloNo.TabIndex = 3;
             this.comboCloNo.SelectedIndexChanged += new System.EventHandler(this.comboCloNo_SelectedIndexChanged);
+            this.comboCloNo.Click += new System.EventHandler(this.comboCloNo_Click);
             this.comboCloNo.MouseClick += new System.Windows.Forms.MouseEventHandler(this.comboCloNo_MouseClick);
             // 
             // txtDetails
@@ -380,6 +381,7 @@
             this.cmbRubricID.Name = "cmbRubricID";
             this.cmbRubricID.Size = new System.Drawing.Size(180, 21);
             this.cmbRubricID.TabIndex = 8;
+            this.cmbRubricID.Click += new System.EventHandler(this.cmbRubricID_Click);
             // 
             // txtRubricLevel
             // 

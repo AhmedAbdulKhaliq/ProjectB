@@ -53,9 +53,8 @@ namespace ProjectB
             }
             cmd.Close();
         }
-        private void Rubric_Load(object sender, EventArgs e)
+        void UpdateValue()
         {
-            UpdateValues();
             this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
             string con = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd2 = new SqlConnection(con);
@@ -71,6 +70,11 @@ namespace ProjectB
                 cmbRubricID.Items.Add(reader1[0]);
             }
             cmd2.Close();
+        }
+        private void Rubric_Load(object sender, EventArgs e)
+        {
+           // UpdateValues();
+            
 
 
         }
@@ -436,6 +440,18 @@ namespace ProjectB
         private void comboCloNo_MouseClick(object sender, MouseEventArgs e)
         {
             // UpdateValues();
+        }
+
+        private void comboCloNo_Click(object sender, EventArgs e)
+        {
+            comboCloNo.Items.Clear();
+            UpdateValues();
+        }
+
+        private void cmbRubricID_Click(object sender, EventArgs e)
+        {
+            cmbRubricID.Items.Clear();
+            UpdateValue();
         }
     }
 }
