@@ -23,3 +23,4 @@ E:\ProjectB\ProjectB\obj\Debug\ProjectB.csproj.GenerateResource.Cache
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.MainForm.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.Assesment.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.AssessmentComponent.resources
+E:\ProjectB\ProjectB\obj\Debug\ProjectB.Class.resources
