@@ -171,6 +171,21 @@ namespace ProjectB
                 cmdAdd.Text = "Update";
 
 
+
+            }
+            if (e.ColumnIndex == dataAssessmentComponent.Columns["Delete"].Index)
+            {
+                int row = e.RowIndex;
+                int id = Convert.ToInt32(dataAssessmentComponent.Rows[row].Cells[0].Value);
+
+                string Qeury = "Delete from dbo.AssessmentComponent where ID = '" + id + "'";
+                SqlConnection connection1 = new SqlConnection(constring);
+                connection1.Open();
+                SqlCommand cmd = new SqlCommand(Qeury, connection1);
+                cmd.ExecuteNonQuery();
+                this.dataAssessmentComponent.Rows.RemoveAt(e.RowIndex);
+                MessageBox.Show("Assessment Component has been deleted");
+
             }
         }
     }

@@ -130,13 +130,138 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataClo.Columns["delete"].Index)
             {
-                
+                int[] rubric_array = new int[10];
+
+
+                int i = 0;
                 int row = e.RowIndex;
-                int id = Convert.ToInt32(dataClo.Rows[row].Cells[0].Value);
-                //string id1 = dataClo.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
-                //id = Convert.ToInt32(id1); 
+                //int id = Convert.ToInt32(dataClo.Rows[row].Cells[0].Value);
+                string id1 = dataClo.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
+                id = Convert.ToInt32(id1);
+                //SqlConnection cmd2 = new SqlConnection(con);
+                //cmd2.Open();
+                String c = "SELECT Id FROM dbo.Rubric where CloId ='" + id + "'";
+                SqlCommand com = new SqlCommand(c, connection);
+                com.Parameters.Add(new SqlParameter("0", 1));
+                SqlDataReader reader1 = com.ExecuteReader();
+                while (reader1.Read())
+                {
+                    //comboCloNo.Items.Add(reader[0]);
+                    //cmbCloID.Items.Add(reader[0]);
+                    //cmbRubricID.Items.Add(reader1[0]);
+                    rubric_array[i] = Convert.ToInt32(reader1[0]);
+                    i++;
+
+                }
+                //int s = rubric_array[1];
+                //int v = rubric_array[0];
+                //MessageBox.Show("Rubric  Saved");
+                reader1.Close();
+                foreach (int rubric_id in rubric_array)
+                {
+                    int j = 0;
+                    int[] rubriclevel_array = new int[3];
+                    String d = "SELECT Id FROM dbo.RubricLevel where RubricId ='" + rubric_id + "'";
+                    SqlCommand com1 = new SqlCommand(d, connection);
+                    com1.Parameters.Add(new SqlParameter("0", 1));
+                    SqlDataReader r = com.ExecuteReader();
+                    while (r.Read())
+                    {
+                        //comboCloNo.Items.Add(reader[0]);
+                        //cmbCloID.Items.Add(reader[0]);
+                        //cmbRubricID.Items.Add(reader1[0]);
+                        rubriclevel_array[j] = Convert.ToInt32(r[0]);
+                        j++;
+
+                    }
+                    r.Close();
+                    foreach(int rubriclevel_id in rubriclevel_array)
+                    {
+                        string DeleteStudentResult = "Delete from dbo.StudentResult where RubriCMeasurementId = '" + rubriclevel_id  + "'";
+                        SqlCommand cmd = new SqlCommand(DeleteStudentResult, connection);
+                        cmd.ExecuteNonQuery();
+                        
+
+                    }
+                    string DeleteRubricLevel = "Delete from dbo.RubricLevel where RubriCId = '" + rubric_id + "'";
+                    SqlCommand cmd2 = new SqlCommand(DeleteRubricLevel, connection);
+                    cmd2.ExecuteNonQuery();
+
+
+
+                }
+
+
+                foreach (int rubric_id in rubric_array)
+                {
+                    int j = 0;
+                    int[] aseessmentcomponent_array = new int[50];
+                    String d = "SELECT Id FROM dbo.AssessmentComponent where RubricId ='" + rubric_id + "'";
+                    SqlCommand com1 = new SqlCommand(d, connection);
+                    com1.Parameters.Add(new SqlParameter("0", 1));
+                    SqlDataReader r2 = com.ExecuteReader();
+                    while (r2.Read())
+                    {
+                        //comboCloNo.Items.Add(reader[0]);
+                        //cmbCloID.Items.Add(reader[0]);
+                        //cmbRubricID.Items.Add(reader1[0]);
+                        aseessmentcomponent_array[j] = Convert.ToInt32(r2[0]);
+                        j++;
+
+                    }
+                    r2.Close();
+                    foreach (int assessmentcomponent_id in aseessmentcomponent_array)
+                    {
+                        string DeleteStudentResult = "Delete from dbo.StudentResult where AssessmentComponentId = '" + assessmentcomponent_id + "'";
+                        SqlCommand cmd = new SqlCommand(DeleteStudentResult, connection);
+                        cmd.ExecuteNonQuery();
+
+
+                    }
+                    string DeleteAssessmentCOmponent = "Delete from dbo.AssessmentComponent where RubriCId = '" + rubric_id + "'";
+                    SqlCommand cmd2 = new SqlCommand(DeleteAssessmentCOmponent, connection);
+                    cmd2.ExecuteNonQuery();
+
+
+
+                }
+                string DeleteRubric= "Delete from dbo.Rubric where CloId = '" + id + "'";
+                SqlCommand command = new SqlCommand(DeleteRubric, connection);
+                command.ExecuteNonQuery();
+
+
+                string DeleteClo = "Delete from dbo.Clo where ID = '" + id + "'";
+                SqlCommand command1 = new SqlCommand(DeleteClo, connection);
+                command1.ExecuteNonQuery();
+                this.dataClo.Rows.RemoveAt(e.RowIndex);
+                MessageBox.Show("CLO has been deleted");
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                /*id = Convert.ToInt32(id1); 
+                string Qeury3 = "Delete from dbo.AssessmentComponent where RubricId = '" + id + "'";
+                SqlCommand cmd1 = new SqlCommand(Qeury3, connection);
+                cmd1.ExecuteNonQuery();
+                string Qeury2 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
+                cmd1 = new SqlCommand(Qeury2, connection);
+                cmd1.ExecuteNonQuery();
                 string Qeury1 = "Delete from dbo.Rubric where CloId = '" + id + "'";
-                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                cmd1 = new SqlCommand(Qeury1, connection);
                 cmd1.ExecuteNonQuery();
                 
                 //MessageBox.Show("Rubric has been deleted");
@@ -145,8 +270,8 @@ namespace ProjectB
                 string Qeury = "Delete from dbo.Clo where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
-                this.dataClo.Rows.RemoveAt(e.RowIndex);
-                MessageBox.Show("CLO has been deleted");
+               // this.dataClo.Rows.RemoveAt(e.RowIndex);
+                MessageBox.Show("CLO has been deleted");*/
             }
             if (e.ColumnIndex == dataClo.Columns["edit"].Index)
             {

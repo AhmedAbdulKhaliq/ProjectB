@@ -73,8 +73,18 @@ namespace ProjectB
         }
         private void Rubric_Load(object sender, EventArgs e)
         {
-           // UpdateValues();
-            
+            UpdateValues();
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataGridView1.DataSource = dtbl;
+            }
+
+
 
 
         }
@@ -194,11 +204,42 @@ namespace ProjectB
                 
                 int row = e.RowIndex;
                 id = Convert.ToInt32(dataRubric.Rows[e.RowIndex].Cells[0].Value);
+                string Qeury1 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
+                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                cmd1.ExecuteNonQuery();
+
+                string Qeury2 = "Delete from dbo.AssessmentComponent where RubricId = '" + id + "'";
+                SqlCommand cmd2 = new SqlCommand(Qeury2, connection);
+                cmd2.ExecuteNonQuery();
+
+
                 string Qeury = "Delete from dbo.Rubric where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
                 this.dataRubric.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("Rubric has been deleted");
+
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.AssessmentComponent", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    AssessmentComponent a = new AssessmentComponent();
+                    a.dataAssessmentComponent.DataSource = dtbl;
+
+                }
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataGridView1.DataSource = dtbl;
+                }
+
             }
             if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
             {

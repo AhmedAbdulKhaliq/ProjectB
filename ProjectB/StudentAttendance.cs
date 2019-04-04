@@ -379,10 +379,6 @@ namespace ProjectB
             {
                 //string temp = dataStudentAttendance.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 //id = Convert.ToInt32(temp);
-
-
-
-
                 string attendance_id = dataStudentAttendance.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 string student_id = dataStudentAttendance.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
                 string lookup_id = dataStudentAttendance.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();

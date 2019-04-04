@@ -40,10 +40,6 @@
             this.cmbAssessmentId = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataAssessmentComponent = new System.Windows.Forms.DataGridView();
-            this.projectBDataSet6 = new ProjectB.ProjectBDataSet6();
-            this.assessmentComponentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.assessmentComponentTableAdapter = new ProjectB.ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter();
-            this.cmdAdd = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rubricIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,9 +49,13 @@
             this.assessmentIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.assessmentComponentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet6 = new ProjectB.ProjectBDataSet6();
+            this.assessmentComponentTableAdapter = new ProjectB.ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter();
+            this.cmdAdd = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataAssessmentComponent)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet6)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assessmentComponentBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet6)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -166,30 +166,6 @@
             this.dataAssessmentComponent.TabIndex = 13;
             this.dataAssessmentComponent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataAssessmentComponent_CellContentClick);
             // 
-            // projectBDataSet6
-            // 
-            this.projectBDataSet6.DataSetName = "ProjectBDataSet6";
-            this.projectBDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // assessmentComponentBindingSource
-            // 
-            this.assessmentComponentBindingSource.DataMember = "AssessmentComponent";
-            this.assessmentComponentBindingSource.DataSource = this.projectBDataSet6;
-            // 
-            // assessmentComponentTableAdapter
-            // 
-            this.assessmentComponentTableAdapter.ClearBeforeFill = true;
-            // 
-            // cmdAdd
-            // 
-            this.cmdAdd.Location = new System.Drawing.Point(109, 184);
-            this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
-            this.cmdAdd.TabIndex = 14;
-            this.cmdAdd.Text = "Save";
-            this.cmdAdd.UseVisualStyleBackColor = true;
-            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
-            // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -258,6 +234,30 @@
             this.Delete.ToolTipText = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
+            // assessmentComponentBindingSource
+            // 
+            this.assessmentComponentBindingSource.DataMember = "AssessmentComponent";
+            this.assessmentComponentBindingSource.DataSource = this.projectBDataSet6;
+            // 
+            // projectBDataSet6
+            // 
+            this.projectBDataSet6.DataSetName = "ProjectBDataSet6";
+            this.projectBDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // assessmentComponentTableAdapter
+            // 
+            this.assessmentComponentTableAdapter.ClearBeforeFill = true;
+            // 
+            // cmdAdd
+            // 
+            this.cmdAdd.Location = new System.Drawing.Point(109, 184);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
+            this.cmdAdd.TabIndex = 14;
+            this.cmdAdd.Text = "Save";
+            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
             // AssessmentComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -279,8 +279,8 @@
             this.Text = "AssessmentComponent";
             this.Load += new System.EventHandler(this.AssessmentComponent_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataAssessmentComponent)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet6)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.assessmentComponentBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet6)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -298,7 +298,6 @@
         private System.Windows.Forms.ComboBox cmbRubricId;
         private System.Windows.Forms.ComboBox cmbAssessmentId;
         private System.Windows.Forms.Label label7;
-        private System.Windows.Forms.DataGridView dataAssessmentComponent;
         private ProjectBDataSet6 projectBDataSet6;
         private System.Windows.Forms.BindingSource assessmentComponentBindingSource;
         private ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter assessmentComponentTableAdapter;
@@ -312,5 +311,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Button cmdAdd;
+        public System.Windows.Forms.DataGridView dataAssessmentComponent;
     }
 }

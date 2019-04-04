@@ -99,10 +99,10 @@ namespace ProjectB
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataAssesment.Rows[row].Cells[0].Value);
 
-                string run = "Delete from dbo.AssessmentComponent where ID = '" + id + "'";
+                string run = "Delete from dbo.AssessmentComponent where AssessmentId = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(run, connection);
                 cmd1.ExecuteNonQuery();
-                string Qeury = "Delete from dbo.Assessment where ID = '" + id + "'";
+                string Qeury = "Delete from dbo.Assessment where Id = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
                 this.dataAssesment.Rows.RemoveAt(e.RowIndex);
