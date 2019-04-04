@@ -30,23 +30,28 @@
         {
             this.components = new System.ComponentModel.Container();
             this.dataClass = new System.Windows.Forms.DataGridView();
-            this.calenderAttendance = new System.Windows.Forms.MonthCalendar();
-            this.projectBDataSet7 = new ProjectB.ProjectBDataSet7();
-            this.classAttendanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.classAttendanceTableAdapter = new ProjectB.ProjectBDataSet7TableAdapters.ClassAttendanceTableAdapter();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.attendanceDateDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.classAttendanceBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet7 = new ProjectB.ProjectBDataSet7();
+            this.calenderAttendance = new System.Windows.Forms.MonthCalendar();
+            this.classAttendanceTableAdapter = new ProjectB.ProjectBDataSet7TableAdapters.ClassAttendanceTableAdapter();
             this.cmdAdd = new System.Windows.Forms.Button();
+            this.cmdShow = new System.Windows.Forms.Button();
+            this.label1 = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.dataClass)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet7)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.classAttendanceBindingSource)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet7)).BeginInit();
             this.SuspendLayout();
             // 
             // dataClass
             // 
+            this.dataClass.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataClass.AutoGenerateColumns = false;
+            this.dataClass.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataClass.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataClass.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -54,31 +59,11 @@
             this.Edit,
             this.Delete});
             this.dataClass.DataSource = this.classAttendanceBindingSource;
-            this.dataClass.Location = new System.Drawing.Point(-2, 191);
+            this.dataClass.Location = new System.Drawing.Point(12, 209);
             this.dataClass.Name = "dataClass";
-            this.dataClass.Size = new System.Drawing.Size(530, 169);
+            this.dataClass.Size = new System.Drawing.Size(726, 169);
             this.dataClass.TabIndex = 1;
             this.dataClass.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataClass_CellContentClick);
-            // 
-            // calenderAttendance
-            // 
-            this.calenderAttendance.Location = new System.Drawing.Point(165, 17);
-            this.calenderAttendance.Name = "calenderAttendance";
-            this.calenderAttendance.TabIndex = 2;
-            // 
-            // projectBDataSet7
-            // 
-            this.projectBDataSet7.DataSetName = "ProjectBDataSet7";
-            this.projectBDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // classAttendanceBindingSource
-            // 
-            this.classAttendanceBindingSource.DataMember = "ClassAttendance";
-            this.classAttendanceBindingSource.DataSource = this.projectBDataSet7;
-            // 
-            // classAttendanceTableAdapter
-            // 
-            this.classAttendanceTableAdapter.ClearBeforeFill = true;
             // 
             // idDataGridViewTextBoxColumn
             // 
@@ -115,21 +100,68 @@
             this.Delete.ToolTipText = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
+            // classAttendanceBindingSource
+            // 
+            this.classAttendanceBindingSource.DataMember = "ClassAttendance";
+            this.classAttendanceBindingSource.DataSource = this.projectBDataSet7;
+            // 
+            // projectBDataSet7
+            // 
+            this.projectBDataSet7.DataSetName = "ProjectBDataSet7";
+            this.projectBDataSet7.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // calenderAttendance
+            // 
+            this.calenderAttendance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.calenderAttendance.Location = new System.Drawing.Point(215, -1);
+            this.calenderAttendance.Name = "calenderAttendance";
+            this.calenderAttendance.TabIndex = 2;
+            // 
+            // classAttendanceTableAdapter
+            // 
+            this.classAttendanceTableAdapter.ClearBeforeFill = true;
+            // 
             // cmdAdd
             // 
-            this.cmdAdd.Location = new System.Drawing.Point(428, 156);
+            this.cmdAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdAdd.Location = new System.Drawing.Point(206, 173);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
+            this.cmdAdd.Size = new System.Drawing.Size(75, 31);
             this.cmdAdd.TabIndex = 3;
             this.cmdAdd.Text = "Add";
-            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
+            // cmdShow
+            // 
+            this.cmdShow.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShow.Location = new System.Drawing.Point(381, 173);
+            this.cmdShow.Name = "cmdShow";
+            this.cmdShow.Size = new System.Drawing.Size(75, 31);
+            this.cmdShow.TabIndex = 4;
+            this.cmdShow.Text = "Show All";
+            this.cmdShow.UseVisualStyleBackColor = false;
+            this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Location = new System.Drawing.Point(12, 9);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(181, 25);
+            this.label1.TabIndex = 5;
+            this.label1.Text = "Class Attendance";
             // 
             // Class
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(540, 353);
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.ClientSize = new System.Drawing.Size(685, 353);
+            this.Controls.Add(this.label1);
+            this.Controls.Add(this.cmdShow);
             this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.calenderAttendance);
             this.Controls.Add(this.dataClass);
@@ -137,9 +169,10 @@
             this.Text = "Class";
             this.Load += new System.EventHandler(this.Class_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataClass)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet7)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.classAttendanceBindingSource)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet7)).EndInit();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -154,5 +187,7 @@
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Button cmdAdd;
+        private System.Windows.Forms.Button cmdShow;
+        private System.Windows.Forms.Label label1;
     }
 }

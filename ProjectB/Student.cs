@@ -380,7 +380,15 @@ namespace ProjectB
                 
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataStudent.Rows[row].Cells[0].Value);
-                
+
+                string Qeury111 = "Delete from dbo.StudentResult where StudentId = '" + id + "'";
+                SqlCommand cmd111 = new SqlCommand(Qeury111, connection);
+                cmd111.ExecuteNonQuery();
+
+                string Qeury1 = "Delete from dbo.StudentAttendance where StudentId = '" + id + "'";
+                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                cmd1.ExecuteNonQuery();
+
                 string Qeury = "Delete from dbo.student where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
@@ -447,6 +455,19 @@ namespace ProjectB
         private void cbstatus_SelectedIndexChanged(object sender, EventArgs e)
         {
 
+        }
+
+        private void cmd_show_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataStudent.DataSource = dtbl;
+            }
         }
     }
 }

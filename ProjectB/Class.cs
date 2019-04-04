@@ -129,5 +129,18 @@ namespace ProjectB
                 MessageBox.Show("Class Date has been deleted");
             }
         }
+
+        private void cmdShow_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.ClassAttendance", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataClass.DataSource = dtbl;
+            }
+        }
     }
 }

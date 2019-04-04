@@ -46,6 +46,7 @@
             this.cmdAdd = new System.Windows.Forms.Button();
             this.label4 = new System.Windows.Forms.Label();
             this.studentAttendanceTableAdapter = new ProjectB.ProjectBDataSet8TableAdapters.StudentAttendanceTableAdapter();
+            this.cmdShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataStudentAttendance)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentAttendanceBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet8)).BeginInit();
@@ -108,6 +109,9 @@
             // 
             // dataStudentAttendance
             // 
+            this.dataStudentAttendance.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
             this.dataStudentAttendance.AutoGenerateColumns = false;
             this.dataStudentAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataStudentAttendance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -196,11 +200,22 @@
             // 
             this.studentAttendanceTableAdapter.ClearBeforeFill = true;
             // 
+            // cmdShow
+            // 
+            this.cmdShow.Location = new System.Drawing.Point(48, 164);
+            this.cmdShow.Name = "cmdShow";
+            this.cmdShow.Size = new System.Drawing.Size(75, 23);
+            this.cmdShow.TabIndex = 9;
+            this.cmdShow.Text = "Show All";
+            this.cmdShow.UseVisualStyleBackColor = true;
+            this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
+            // 
             // StudentAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(690, 330);
+            this.Controls.Add(this.cmdShow);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.cmdAdd);
             this.Controls.Add(this.dataStudentAttendance);
@@ -240,5 +255,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn attendanceStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
+        private System.Windows.Forms.Button cmdShow;
     }
 }

@@ -25,3 +25,5 @@ E:\ProjectB\ProjectB\obj\Debug\ProjectB.Assesment.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.AssessmentComponent.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.Class.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.StudentAttendance.resources
+E:\ProjectB\ProjectB\obj\Debug\ProjectB.Result.resources
+E:\ProjectB\ProjectB\obj\Debug\ProjectB.Reports.resources

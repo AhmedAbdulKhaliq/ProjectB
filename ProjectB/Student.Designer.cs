@@ -42,14 +42,6 @@
             this.label = new System.Windows.Forms.Label();
             this.cmdAdd = new System.Windows.Forms.Button();
             this.dataStudent = new System.Windows.Forms.DataGridView();
-            this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
-            this.projectBDataSet2 = new ProjectB.ProjectBDataSet2();
-            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.projectBDataSet = new ProjectB.ProjectBDataSet();
-            this.studentTableAdapter = new ProjectB.ProjectBDataSetTableAdapters.StudentTableAdapter();
-            this.studentTableAdapter1 = new ProjectB.ProjectBDataSet2TableAdapters.StudentTableAdapter();
-            this.cbstatus = new System.Windows.Forms.ComboBox();
-            this.label1 = new System.Windows.Forms.Label();
             this.dataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.firstNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.lastNameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -59,6 +51,15 @@
             this.statusDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.studentBindingSource1 = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet2 = new ProjectB.ProjectBDataSet2();
+            this.studentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet = new ProjectB.ProjectBDataSet();
+            this.studentTableAdapter = new ProjectB.ProjectBDataSetTableAdapters.StudentTableAdapter();
+            this.studentTableAdapter1 = new ProjectB.ProjectBDataSet2TableAdapters.StudentTableAdapter();
+            this.cbstatus = new System.Windows.Forms.ComboBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.cmd_show = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataStudent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.studentBindingSource1)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet2)).BeginInit();
@@ -206,58 +207,6 @@
             this.dataStudent.TabIndex = 14;
             this.dataStudent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataStudent_CellContentClick);
             // 
-            // studentBindingSource1
-            // 
-            this.studentBindingSource1.DataMember = "Student";
-            this.studentBindingSource1.DataSource = this.projectBDataSet2;
-            // 
-            // projectBDataSet2
-            // 
-            this.projectBDataSet2.DataSetName = "ProjectBDataSet2";
-            this.projectBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // studentBindingSource
-            // 
-            this.studentBindingSource.DataMember = "Student";
-            this.studentBindingSource.DataSource = this.projectBDataSet;
-            // 
-            // projectBDataSet
-            // 
-            this.projectBDataSet.DataSetName = "ProjectBDataSet";
-            this.projectBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // studentTableAdapter
-            // 
-            this.studentTableAdapter.ClearBeforeFill = true;
-            // 
-            // studentTableAdapter1
-            // 
-            this.studentTableAdapter1.ClearBeforeFill = true;
-            // 
-            // cbstatus
-            // 
-            this.cbstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cbstatus.Items.AddRange(new object[] {
-            "Active",
-            "InActive"});
-            this.cbstatus.Location = new System.Drawing.Point(138, 192);
-            this.cbstatus.Name = "cbstatus";
-            this.cbstatus.Size = new System.Drawing.Size(121, 23);
-            this.cbstatus.TabIndex = 16;
-            this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
-            // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(316, 21);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(107, 20);
-            this.label1.TabIndex = 17;
-            this.label1.Text = "Student Form";
-            // 
             // dataGridViewTextBoxColumn1
             // 
             this.dataGridViewTextBoxColumn1.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
@@ -324,12 +273,75 @@
             this.delete.Text = "delete";
             this.delete.UseColumnTextForButtonValue = true;
             // 
+            // studentBindingSource1
+            // 
+            this.studentBindingSource1.DataMember = "Student";
+            this.studentBindingSource1.DataSource = this.projectBDataSet2;
+            // 
+            // projectBDataSet2
+            // 
+            this.projectBDataSet2.DataSetName = "ProjectBDataSet2";
+            this.projectBDataSet2.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentBindingSource
+            // 
+            this.studentBindingSource.DataMember = "Student";
+            this.studentBindingSource.DataSource = this.projectBDataSet;
+            // 
+            // projectBDataSet
+            // 
+            this.projectBDataSet.DataSetName = "ProjectBDataSet";
+            this.projectBDataSet.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // studentTableAdapter
+            // 
+            this.studentTableAdapter.ClearBeforeFill = true;
+            // 
+            // studentTableAdapter1
+            // 
+            this.studentTableAdapter1.ClearBeforeFill = true;
+            // 
+            // cbstatus
+            // 
+            this.cbstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cbstatus.Items.AddRange(new object[] {
+            "Active",
+            "InActive"});
+            this.cbstatus.Location = new System.Drawing.Point(138, 192);
+            this.cbstatus.Name = "cbstatus";
+            this.cbstatus.Size = new System.Drawing.Size(121, 23);
+            this.cbstatus.TabIndex = 16;
+            this.cbstatus.SelectedIndexChanged += new System.EventHandler(this.cbstatus_SelectedIndexChanged);
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Black;
+            this.label1.Location = new System.Drawing.Point(316, 21);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(107, 20);
+            this.label1.TabIndex = 17;
+            this.label1.Text = "Student Form";
+            // 
+            // cmd_show
+            // 
+            this.cmd_show.Location = new System.Drawing.Point(70, 221);
+            this.cmd_show.Name = "cmd_show";
+            this.cmd_show.Size = new System.Drawing.Size(75, 32);
+            this.cmd_show.TabIndex = 18;
+            this.cmd_show.Text = "Show All";
+            this.cmd_show.UseVisualStyleBackColor = true;
+            this.cmd_show.Click += new System.EventHandler(this.cmd_show_Click);
+            // 
             // Student
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(827, 280);
+            this.Controls.Add(this.cmd_show);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbstatus);
             this.Controls.Add(this.cmdAdd);
@@ -391,6 +403,7 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
+        private System.Windows.Forms.Button cmd_show;
     }
 }
 

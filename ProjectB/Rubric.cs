@@ -98,6 +98,8 @@ namespace ProjectB
         /// <param name="e"></param>
         private void button1_Click(object sender, EventArgs e)
         {
+            SqlConnection connection = new SqlConnection(constring);
+            
             bool flag = false;
             if(button1.Text =="Add Rubric")
             {
@@ -119,7 +121,22 @@ namespace ProjectB
                     flag = true;
 
                 }
-                if(flag == false)
+                bool isExist = false;
+                string query2 = "SELECT CloId, COUNT(CloId) FROM Rubric GROUP BY CloId HAVING COUNT(CloId) >= 4";
+                SqlCommand cmd1 = new SqlCommand(query2, connection);
+                connection.Open();
+                SqlDataReader reader = cmd1.ExecuteReader();
+                while (reader.Read())
+                {
+                    int id = Convert.ToInt32(comboCloNo.Text);
+                    if (id == Convert.ToInt32(comboCloNo.Text))
+                    {
+                        isExist = true;
+                        MessageBox.Show("More than 4 rubrics can't be added against 1 Clo");
+                        break;
+                    }
+                }
+                if (isExist == false && flag == false )
                 {
                     string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text + "','" + this.comboCloNo.Text + "')";
                     SqlConnection conDataBase = new SqlConnection(constring);
@@ -153,7 +170,7 @@ namespace ProjectB
             }
             if(button1.Text == "Update")
             {
-                SqlConnection connection = new SqlConnection(constring);
+                
                 connection.Open();
                 string Qeury = "Update dbo.Rubric Set Id ='" + txtRubricId.Text + "',Details='" + txtDetails.Text + "',CLoId='" + comboCloNo.Text + "' Where Id ='" + id + "' ";
 
@@ -199,12 +216,108 @@ namespace ProjectB
         {
             SqlConnection connection = new SqlConnection(constring);
             connection.Open();
-            if (e.ColumnIndex == dataRubric.Columns["delete"].Index)
+            if (e.ColumnIndex == dataRubric.Columns["Delete"].Index)
             {
+                try
+                {
+                    int[] rubric_level = new int[4];
+                    int j = 0;
+                    int[] assessment_componenT = new int[100];
+
+
+                    int row = e.RowIndex;
+                    id = Convert.ToInt32(dataRubric.Rows[e.RowIndex].Cells[0].Value);
+                    String d = "SELECT Id FROM dbo.RubricLevel where RubricId ='" + id + "'";
+                    SqlCommand com1 = new SqlCommand(d, connection);
+                    com1.Parameters.Add(new SqlParameter("0", 1));
+                    SqlDataReader r2 = com1.ExecuteReader();
+                    while (r2.Read())
+                    {
+                        //comboCloNo.Items.Add(reader[0]);
+                        //cmbCloID.Items.Add(reader[0]);
+                        //cmbRubricID.Items.Add(reader1[0]);
+                        rubric_level[j] = Convert.ToInt32(r2[0]);
+                        j++;
+
+                    }
+                    r2.Close();
+                    int s = rubric_level[0];
+                    int v = rubric_level[1];
+                    String del = "SELECT Id FROM dbo.AssessmentComponent where RubricId ='" + id + "'";
+                    SqlCommand com11 = new SqlCommand(del, connection);
+                    com11.Parameters.Add(new SqlParameter("0", 1));
+                    SqlDataReader r3 = com11.ExecuteReader();
+                    while (r3.Read())
+                    {
+                        //comboCloNo.Items.Add(reader[0]);
+                        //cmbCloID.Items.Add(reader[0]);
+                        //cmbRubricID.Items.Add(reader1[0]);
+                        assessment_componenT[j] = Convert.ToInt32(r3[0]);
+                        j++;
+
+                    }
+                    r3.Close();
+
+                    int s1 = assessment_componenT[1];
+                    int s2 = assessment_componenT[0];
+                    int s3 = assessment_componenT[2];
+                    //MessageBox.Show("...");
+                    foreach (int a in rubric_level)
+
+                    {
+                        int delete = a;
+                        string Qeury0 = "Delete from dbo.StudentResult where RubricMeasurementId = '" + a + "'";
+                        SqlCommand cmd0 = new SqlCommand(Qeury0, connection);
+                        cmd0.ExecuteNonQuery();
+
+
+
+
+                    }
+                    foreach (int a in assessment_componenT)
+
+                    {
+                        int delete = a;
+                        string Qeury1 = "Delete from dbo.StudentResult where AssessmentComponentId = '" + a + "'";
+                        SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                        cmd1.ExecuteNonQuery();
+
+
+
+
+                    }
+                    string Qeury2 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
+                    SqlCommand cmd3 = new SqlCommand(Qeury2, connection);
+                    cmd3.ExecuteNonQuery();
+
+
+                    string Qeury4 = "Delete from dbo.AssessmentComponent where RubricId = '" + id + "'";
+                    SqlCommand cmd4 = new SqlCommand(Qeury4, connection);
+                    cmd4.ExecuteNonQuery();
+
+                    string qeury5 = "Delete from dbo.Rubric where Id = '" + id + "'";
+                    SqlCommand cmd5 = new SqlCommand(qeury5, connection);
+                    cmd5.ExecuteNonQuery();
+
+                    MessageBox.Show("Rubric Deleted");
+                }
+                catch(Exception ex)
+                {
+                    MessageBox.Show(ex.Message);
+                }
                 
-                int row = e.RowIndex;
-                id = Convert.ToInt32(dataRubric.Rows[e.RowIndex].Cells[0].Value);
-                string Qeury1 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
+
+
+
+
+
+
+
+
+
+
+
+                /*string Qeury1 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
                 cmd1.ExecuteNonQuery();
 
@@ -238,10 +351,10 @@ namespace ProjectB
                     sqlDA.Fill(dtbl);
 
                     dataGridView1.DataSource = dtbl;
-                }
+                }*/
 
             }
-            if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
+                if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
             {
                 string temp = dataRubric.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 id = Convert.ToInt32(temp);
@@ -334,6 +447,23 @@ namespace ProjectB
 
         private void cmdAddLevel_Click(object sender, EventArgs e)
         {
+            SqlConnection conDataBase = new SqlConnection(constring);
+            bool isExist = false;
+            string query2 = "SELECT RubricId, COUNT(RubricId) FROM RubricLevel GROUP BY RubricId HAVING COUNT(RubricId) >= 4";
+            SqlCommand cmd1 = new SqlCommand(query2, conDataBase);
+            conDataBase.Open();
+            SqlDataReader reader = cmd1.ExecuteReader();
+            while (reader.Read())
+            {
+                int id = Convert.ToInt32(cmbRubricID.Text);
+                if (id == Convert.ToInt32(cmbRubricID.Text))
+                {
+                    isExist = true;
+                    MessageBox.Show("More than 4 level can't be added against 1 rubric");
+                    break;
+                }
+            }
+            conDataBase.Close();
             bool flag = false;
             if(txtDetRubric.Text== "" || txtRubricLevel.Text == "" || cmbRubricID.Text == "")
             {
@@ -342,13 +472,13 @@ namespace ProjectB
             }
             if(flag==false)
             {
-                if (cmdAddLevel.Text == "Add")
+                if (cmdAddLevel.Text == "Add" && isExist == false)
                 {
 
                     using (SqlConnection sqlcon = new SqlConnection(constring))
                     {
                         string qeury = "insert into dbo.RubricLevel(RubricId,Details,MeasurementLevel) values('" + this.cmbRubricID.Text + "','" + this.txtDetRubric.Text + "','" + this.txtRubricLevel.Text + "')";
-                        SqlConnection conDataBase = new SqlConnection(constring);
+                        
 
                         SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
                         SqlDataReader myreader;
@@ -420,9 +550,12 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataGridView1.Columns["Remove"].Index)
             {
+                
 
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataGridView1.Rows[row].Cells[0].Value);
+
+
 
                 string Qeury = "Delete from dbo.RubricLevel where ID = '" + id + "'";
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
@@ -493,6 +626,47 @@ namespace ProjectB
         {
             cmbRubricID.Items.Clear();
             UpdateValue();
+        }
+
+        private void cmdShowRubric_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataRubric.DataSource = dtbl;
+            }
+
+        }
+
+        private void cmdShow_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Rubric", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataRubric.DataSource = dtbl;
+            }
+        }
+
+        private void cmdShowRubricLevel_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataGridView1.DataSource = dtbl;
+            }
+
         }
     }
 }

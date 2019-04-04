@@ -24,6 +24,9 @@ namespace ProjectB
         bool assessmentflag = false;
         bool componentflag = false;
         bool studentattendanceflag = false;
+        bool classattendanceflag = false;
+        bool studentresultflag = false;
+
 
 
 
@@ -37,6 +40,9 @@ namespace ProjectB
         Assesment assessment;
         AssessmentComponent component;
         StudentAttendance stdattendance;
+        Class classattendance;
+        Result result;
+
         
     
         
@@ -80,6 +86,17 @@ namespace ProjectB
                     stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+
                 stdflag = true;
             }
             else
@@ -101,6 +118,7 @@ namespace ProjectB
             rbflag = false;
             assessmentflag = false;
             componentflag = false;
+            studentresultflag = false;
             //throw new NotImplementedException();
         }
 
@@ -135,6 +153,16 @@ namespace ProjectB
                 if (studentattendanceflag)
                 {
                     stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
                 cloflag = true;
@@ -185,6 +213,16 @@ namespace ProjectB
                     stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
 
 
                 rbflag = true;
@@ -229,6 +267,16 @@ namespace ProjectB
                     stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
                 assessmentflag = true;
 
             }
@@ -271,6 +319,17 @@ namespace ProjectB
                     stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+
 
                 componentflag = true;
 
@@ -320,6 +379,16 @@ namespace ProjectB
                     component.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
 
                 studentattendanceflag = true;
 
@@ -327,6 +396,116 @@ namespace ProjectB
             else
             {
                 stdattendance.Activate();
+            }
+        }
+
+        private void manageToolStripMenuItem6_Click(object sender, EventArgs e)
+        {
+            if (classattendance == null)
+            {
+                classattendance = new Class();
+                classattendance.MdiParent = this;
+                classattendance.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.std_FormClosed);
+                classattendance.Show();
+                if (stdflag)
+                {
+                    std.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (rbflag)
+                {
+                    rubric.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentflag)
+                {
+                    assessment.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (componentflag)
+                {
+                    component.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentattendanceflag)
+                {
+                    stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloflag)
+                {
+                    clo.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                classattendanceflag = true;
+
+
+            }
+            else
+            {
+                classattendance.Activate();
+            }
+
+        }
+
+        private void manageToolStripMenuItem5_Click(object sender, EventArgs e)
+        {
+            //Result r = new Result();
+            //this.Hide();
+            //r.Show();
+            if (result == null)
+            {
+                result = new Result();
+                result.MdiParent = this;
+                result.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.std_FormClosed);
+                result.Show();
+                if (stdflag)
+                {
+                    std.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (rbflag)
+                {
+                    rubric.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentflag)
+                {
+                    assessment.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (componentflag)
+                {
+                    component.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentattendanceflag)
+                {
+                    stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloflag)
+                {
+                    clo.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                studentresultflag = true;
+
+
+            }
+            else
+            {
+                result.Activate();
             }
         }
     }

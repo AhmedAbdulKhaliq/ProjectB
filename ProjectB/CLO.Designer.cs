@@ -43,6 +43,7 @@
             this.cloTableAdapter = new ProjectB.ProjectBDataSet1TableAdapters.CloTableAdapter();
             this.cmdAddClo = new System.Windows.Forms.Button();
             this.label1 = new System.Windows.Forms.Label();
+            this.cmdShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataClo)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.cloBindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.projectBDataSet1)).BeginInit();
@@ -172,11 +173,22 @@
             this.label1.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label1.ForeColor = System.Drawing.Color.Black;
-            this.label1.Location = new System.Drawing.Point(314, 9);
+            this.label1.Location = new System.Drawing.Point(293, 9);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(203, 20);
             this.label1.TabIndex = 10;
             this.label1.Text = "Course Learning Outcomes";
+            // 
+            // cmdShow
+            // 
+            this.cmdShow.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShow.Location = new System.Drawing.Point(29, 75);
+            this.cmdShow.Name = "cmdShow";
+            this.cmdShow.Size = new System.Drawing.Size(75, 34);
+            this.cmdShow.TabIndex = 11;
+            this.cmdShow.Text = "Show All";
+            this.cmdShow.UseVisualStyleBackColor = false;
+            this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
             // 
             // CLO
             // 
@@ -184,6 +196,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(782, 226);
+            this.Controls.Add(this.cmdShow);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cmdAddClo);
             this.Controls.Add(this.dataClo);
@@ -215,5 +228,6 @@
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button cmdShow;
     }
 }

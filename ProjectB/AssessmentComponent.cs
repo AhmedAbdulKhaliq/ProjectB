@@ -177,6 +177,11 @@ namespace ProjectB
             {
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataAssessmentComponent.Rows[row].Cells[0].Value);
+                string Qeury1 = "Delete from dbo.StudentResult where ID = '" + id + "'";
+                SqlConnection connection = new SqlConnection(constring);
+                connection.Open();
+                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
+                cmd1.ExecuteNonQuery();
 
                 string Qeury = "Delete from dbo.AssessmentComponent where ID = '" + id + "'";
                 SqlConnection connection1 = new SqlConnection(constring);
@@ -187,6 +192,20 @@ namespace ProjectB
                 MessageBox.Show("Assessment Component has been deleted");
 
             }
+        }
+
+        private void cmdShow_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.AssessmentComponent", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataAssessmentComponent.DataSource = dtbl;
+            }
+
         }
     }
 }

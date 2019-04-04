@@ -176,6 +176,7 @@
             this.manageToolStripMenuItem5.Name = "manageToolStripMenuItem5";
             this.manageToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.manageToolStripMenuItem5.Text = "Manage";
+            this.manageToolStripMenuItem5.Click += new System.EventHandler(this.manageToolStripMenuItem5_Click);
             // 
             // classAttendanceToolStripMenuItem
             // 
@@ -190,6 +191,7 @@
             this.manageToolStripMenuItem6.Name = "manageToolStripMenuItem6";
             this.manageToolStripMenuItem6.Size = new System.Drawing.Size(152, 22);
             this.manageToolStripMenuItem6.Text = "Manage";
+            this.manageToolStripMenuItem6.Click += new System.EventHandler(this.manageToolStripMenuItem6_Click);
             // 
             // studentAttendanceToolStripMenuItem
             // 

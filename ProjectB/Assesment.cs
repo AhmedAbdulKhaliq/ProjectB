@@ -157,5 +157,18 @@ namespace ProjectB
 
 
         }
+
+        private void cmdShow_Click(object sender, EventArgs e)
+        {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Assessment", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataAssesment.DataSource = dtbl;
+            }
+        }
     }
 }
