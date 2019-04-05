@@ -53,7 +53,6 @@
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
             this.assessmentReportToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.manageToolStripMenuItem9 = new System.Windows.Forms.ToolStripMenuItem();
-            this.addToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -233,8 +232,7 @@
             // assessmentReportToolStripMenuItem
             // 
             this.assessmentReportToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.manageToolStripMenuItem9,
-            this.addToolStripMenuItem});
+            this.manageToolStripMenuItem9});
             this.assessmentReportToolStripMenuItem.Name = "assessmentReportToolStripMenuItem";
             this.assessmentReportToolStripMenuItem.Size = new System.Drawing.Size(119, 20);
             this.assessmentReportToolStripMenuItem.Text = "Assessment Report";
@@ -245,13 +243,6 @@
             this.manageToolStripMenuItem9.Size = new System.Drawing.Size(152, 22);
             this.manageToolStripMenuItem9.Text = "Manage";
             this.manageToolStripMenuItem9.Click += new System.EventHandler(this.manageToolStripMenuItem9_Click);
-            // 
-            // addToolStripMenuItem
-            // 
-            this.addToolStripMenuItem.Name = "addToolStripMenuItem";
-            this.addToolStripMenuItem.Size = new System.Drawing.Size(152, 22);
-            this.addToolStripMenuItem.Text = "Add";
-            this.addToolStripMenuItem.Click += new System.EventHandler(this.addToolStripMenuItem_Click);
             // 
             // MainForm
             // 
@@ -303,7 +294,6 @@
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem8;
         private System.Windows.Forms.ToolStripMenuItem assessmentReportToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem9;
-        private System.Windows.Forms.ToolStripMenuItem addToolStripMenuItem;
     }
 }
 
