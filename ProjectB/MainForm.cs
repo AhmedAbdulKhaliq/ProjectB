@@ -26,6 +26,8 @@ namespace ProjectB
         bool studentattendanceflag = false;
         bool classattendanceflag = false;
         bool studentresultflag = false;
+        bool cloreportflag = false;
+        bool assessmentreportflag = false;
 
 
 
@@ -42,6 +44,9 @@ namespace ProjectB
         StudentAttendance stdattendance;
         Class classattendance;
         Result result;
+        Reports cloreport;
+        AssessmentReport assessmentreport;
+
 
         
     
@@ -96,6 +101,17 @@ namespace ProjectB
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+
 
                 stdflag = true;
             }
@@ -116,6 +132,9 @@ namespace ProjectB
             result = null;
             classattendance = null;
             stdattendance = null;
+            cloreport = null;
+            assessmentreport = null;
+
 
             stdflag = false;
             cloflag = false;
@@ -125,6 +144,8 @@ namespace ProjectB
             studentresultflag = false;
             classattendanceflag = false;
             studentresultflag = false;
+            cloreportflag = false;
+            assessmentreportflag = false;
             //throw new NotImplementedException();
         }
 
@@ -169,6 +190,16 @@ namespace ProjectB
                 if (studentresultflag)
                 {
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
                 cloflag = true;
@@ -229,6 +260,16 @@ namespace ProjectB
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
 
 
                 rbflag = true;
@@ -283,6 +324,16 @@ namespace ProjectB
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
                 assessmentflag = true;
 
             }
@@ -333,6 +384,16 @@ namespace ProjectB
                 if (studentresultflag)
                 {
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
 
@@ -395,6 +456,16 @@ namespace ProjectB
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
 
                 studentattendanceflag = true;
 
@@ -446,6 +517,16 @@ namespace ProjectB
                 if (studentresultflag)
                 {
                     result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
                 classattendanceflag = true;
@@ -505,6 +586,16 @@ namespace ProjectB
                     classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
 
                 }
+                if (cloreportflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
                 studentresultflag = true;
 
 
@@ -517,8 +608,131 @@ namespace ProjectB
 
         private void manageToolStripMenuItem8_Click(object sender, EventArgs e)
         {
-            Reports r = new Reports();
-            r.Show();
+            if (cloreport == null)
+            {
+                cloreport = new Reports();
+                cloreport.MdiParent = this;
+                cloreport.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.std_FormClosed);
+                cloreport.Show();
+                if (stdflag)
+                {
+                    std.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (rbflag)
+                {
+                    rubric.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentflag)
+                {
+                    assessment.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (componentflag)
+                {
+                    component.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentattendanceflag)
+                {
+                    stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloflag)
+                {
+                    clo.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentreportflag)
+                {
+                    assessmentreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                cloreportflag = true;
+
+
+            }
+            else
+            {
+                cloreport.Activate();
+            }
+
+        }
+
+        private void manageToolStripMenuItem9_Click(object sender, EventArgs e)
+        {
+            if (assessmentreport == null)
+            {
+                assessmentreport = new AssessmentReport();
+                assessmentreport.MdiParent = this;
+                assessmentreport.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.std_FormClosed);
+                assessmentreport.Show();
+                if (stdflag)
+                {
+                    std.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (rbflag)
+                {
+                    rubric.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (assessmentflag)
+                {
+                    assessment.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (componentflag)
+                {
+                    component.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentattendanceflag)
+                {
+                    stdattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloflag)
+                {
+                    clo.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (classattendanceflag)
+                {
+                    classattendance.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (studentresultflag)
+                {
+                    result.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                if (cloflag)
+                {
+                    cloreport.WindowState = System.Windows.Forms.FormWindowState.Minimized;
+
+                }
+                assessmentreportflag= true;
+
+
+            }
+            else
+            {
+                assessmentreport.Activate();
+            }
+
+
         }
     }
 }
