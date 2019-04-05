@@ -33,6 +33,9 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="itextsharp">
+      <HintPath>..\itextsharp.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -58,6 +61,12 @@
     <Compile Include="AssessmentComponent.Designer.cs">
       <DependentUpon>AssessmentComponent.cs</DependentUpon>
     </Compile>
+    <Compile Include="AssessmentReport.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AssessmentReport.Designer.cs">
+      <DependentUpon>AssessmentReport.cs</DependentUpon>
+    </Compile>
     <Compile Include="Class.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -70,6 +79,7 @@
     <Compile Include="CLO.Designer.cs">
       <DependentUpon>CLO.cs</DependentUpon>
     </Compile>
+    <Compile Include="iTextSharp\text\Color.cs" />
     <Compile Include="MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -158,6 +168,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="AssessmentComponent.resx">
       <DependentUpon>AssessmentComponent.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="AssessmentReport.resx">
+      <DependentUpon>AssessmentReport.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Class.resx">
       <DependentUpon>Class.cs</DependentUpon>

@@ -49,6 +49,8 @@
             this.statusStrip = new System.Windows.Forms.StatusStrip();
             this.toolStripStatusLabel = new System.Windows.Forms.ToolStripStatusLabel();
             this.toolTip = new System.Windows.Forms.ToolTip(this.components);
+            this.reportsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.manageToolStripMenuItem8 = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip.SuspendLayout();
             this.statusStrip.SuspendLayout();
             this.SuspendLayout();
@@ -63,10 +65,11 @@
             this.assessmentComponentToolStripMenuItem,
             this.studentResultToolStripMenuItem,
             this.classAttendanceToolStripMenuItem,
-            this.studentAttendanceToolStripMenuItem});
+            this.studentAttendanceToolStripMenuItem,
+            this.reportsToolStripMenuItem});
             this.menuStrip.Location = new System.Drawing.Point(0, 0);
             this.menuStrip.Name = "menuStrip";
-            this.menuStrip.Size = new System.Drawing.Size(735, 24);
+            this.menuStrip.Size = new System.Drawing.Size(810, 24);
             this.menuStrip.TabIndex = 0;
             this.menuStrip.Text = "MenuStrip";
             this.menuStrip.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.menuStrip_ItemClicked);
@@ -158,7 +161,7 @@
             // manageToolStripMenuItem5
             // 
             this.manageToolStripMenuItem5.Name = "manageToolStripMenuItem5";
-            this.manageToolStripMenuItem5.Size = new System.Drawing.Size(117, 22);
+            this.manageToolStripMenuItem5.Size = new System.Drawing.Size(152, 22);
             this.manageToolStripMenuItem5.Text = "Manage";
             this.manageToolStripMenuItem5.Click += new System.EventHandler(this.manageToolStripMenuItem5_Click);
             // 
@@ -198,7 +201,7 @@
             this.toolStripStatusLabel});
             this.statusStrip.Location = new System.Drawing.Point(0, 431);
             this.statusStrip.Name = "statusStrip";
-            this.statusStrip.Size = new System.Drawing.Size(735, 22);
+            this.statusStrip.Size = new System.Drawing.Size(810, 22);
             this.statusStrip.TabIndex = 2;
             this.statusStrip.Text = "StatusStrip";
             // 
@@ -208,12 +211,27 @@
             this.toolStripStatusLabel.Size = new System.Drawing.Size(39, 17);
             this.toolStripStatusLabel.Text = "Status";
             // 
+            // reportsToolStripMenuItem
+            // 
+            this.reportsToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.manageToolStripMenuItem8});
+            this.reportsToolStripMenuItem.Name = "reportsToolStripMenuItem";
+            this.reportsToolStripMenuItem.Size = new System.Drawing.Size(59, 20);
+            this.reportsToolStripMenuItem.Text = "Reports";
+            // 
+            // manageToolStripMenuItem8
+            // 
+            this.manageToolStripMenuItem8.Name = "manageToolStripMenuItem8";
+            this.manageToolStripMenuItem8.Size = new System.Drawing.Size(152, 22);
+            this.manageToolStripMenuItem8.Text = "Manage";
+            this.manageToolStripMenuItem8.Click += new System.EventHandler(this.manageToolStripMenuItem8_Click);
+            // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(735, 453);
+            this.ClientSize = new System.Drawing.Size(810, 453);
             this.Controls.Add(this.statusStrip);
             this.Controls.Add(this.menuStrip);
             this.IsMdiContainer = true;
@@ -254,6 +272,8 @@
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem6;
         private System.Windows.Forms.ToolStripMenuItem studentAttendanceToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem7;
+        private System.Windows.Forms.ToolStripMenuItem reportsToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem manageToolStripMenuItem8;
     }
 }
 

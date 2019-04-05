@@ -136,7 +136,24 @@ namespace ProjectB
                         break;
                     }
                 }
-                if (isExist == false && flag == false )
+                connection.Close();
+                bool isExist1 = false;
+                string query3 = "SELECT Id FROM Rubric";
+                SqlCommand cmd2 = new SqlCommand(query3, connection);
+                connection.Open();
+                SqlDataReader reader1 = cmd2.ExecuteReader();
+                while(reader.Read())
+                {
+                    int id = Convert.ToInt32(txtRubricId.Text);
+                    if(id == Convert.ToInt32(txtRubricId.Text))
+                    {
+                        isExist1 = true;
+                        MessageBox.Show("Rubric Id should be Unique;");
+                        break;
+                    }
+                }
+                connection.Close();
+                if (isExist == false && isExist1 == false && flag == false )
                 {
                     string qeury = "insert into dbo.Rubric(Id, Details,CloId) values('" + this.txtRubricId.Text + "','" + txtDetails.Text + "','" + this.comboCloNo.Text + "')";
                     SqlConnection conDataBase = new SqlConnection(constring);

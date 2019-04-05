@@ -22,6 +22,15 @@ namespace ProjectB
 
         private void Assesment_Load(object sender, EventArgs e)
         {
+            using (SqlConnection sqlcon = new SqlConnection(constring))
+            {
+                sqlcon.Open();
+                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Assessment", sqlcon);
+                DataTable dtbl = new DataTable();
+                sqlDA.Fill(dtbl);
+
+                dataAssesment.DataSource = dtbl;
+            }
             // TODO: This line of code loads data into the 'projectBDataSet5.Assessment' table. You can move, or remove it, as needed.
             //this.assessmentTableAdapter.Fill(this.projectBDataSet5.Assessment);
 

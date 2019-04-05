@@ -514,5 +514,11 @@ namespace ProjectB
                 result.Activate();
             }
         }
+
+        private void manageToolStripMenuItem8_Click(object sender, EventArgs e)
+        {
+            Reports r = new Reports();
+            r.Show();
+        }
     }
 }

@@ -27,3 +27,5 @@ E:\ProjectB\ProjectB\obj\Debug\ProjectB.Class.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.StudentAttendance.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.Result.resources
 E:\ProjectB\ProjectB\obj\Debug\ProjectB.Reports.resources
+E:\ProjectB\ProjectB\bin\Debug\itextsharp.dll
+E:\ProjectB\ProjectB\obj\Debug\ProjectB.AssessmentReport.resources
