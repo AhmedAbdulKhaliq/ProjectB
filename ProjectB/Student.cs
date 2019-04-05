@@ -172,6 +172,7 @@ namespace ProjectB
                 }
 
 
+
                 if (flag == false)
                 {
                     if(cmdAdd.Text == "Add")
@@ -222,6 +223,11 @@ namespace ProjectB
                         txtContact.Text = "";
                         txtRegistrationNumber.Text = "";
                         cbstatus.Text = "";
+
+
+
+
+
 
 
 
