@@ -81,6 +81,7 @@
             // 
             // cmbAttendanceId
             // 
+            this.cmbAttendanceId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAttendanceId.FormattingEnabled = true;
             this.cmbAttendanceId.Location = new System.Drawing.Point(113, 68);
             this.cmbAttendanceId.Name = "cmbAttendanceId";
@@ -91,6 +92,7 @@
             // 
             // cmbStudentId
             // 
+            this.cmbStudentId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbStudentId.FormattingEnabled = true;
             this.cmbStudentId.Location = new System.Drawing.Point(113, 95);
             this.cmbStudentId.Name = "cmbStudentId";
@@ -100,6 +102,7 @@
             // 
             // cmbAttendanceStatus
             // 
+            this.cmbAttendanceStatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAttendanceStatus.FormattingEnabled = true;
             this.cmbAttendanceStatus.Location = new System.Drawing.Point(113, 122);
             this.cmbAttendanceStatus.Name = "cmbAttendanceStatus";
@@ -113,6 +116,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataStudentAttendance.AutoGenerateColumns = false;
+            this.dataStudentAttendance.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataStudentAttendance.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataStudentAttendance.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.attendanceIdDataGridViewTextBoxColumn,
@@ -123,7 +127,7 @@
             this.dataStudentAttendance.DataSource = this.studentAttendanceBindingSource;
             this.dataStudentAttendance.Location = new System.Drawing.Point(248, 65);
             this.dataStudentAttendance.Name = "dataStudentAttendance";
-            this.dataStudentAttendance.Size = new System.Drawing.Size(444, 202);
+            this.dataStudentAttendance.Size = new System.Drawing.Size(444, 234);
             this.dataStudentAttendance.TabIndex = 6;
             this.dataStudentAttendance.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataStudentAttendance_CellContentClick);
             // 
@@ -131,6 +135,7 @@
             // 
             this.attendanceIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.attendanceIdDataGridViewTextBoxColumn.DataPropertyName = "AttendanceId";
+            this.attendanceIdDataGridViewTextBoxColumn.FillWeight = 120F;
             this.attendanceIdDataGridViewTextBoxColumn.HeaderText = "AttendanceId";
             this.attendanceIdDataGridViewTextBoxColumn.Name = "attendanceIdDataGridViewTextBoxColumn";
             // 
@@ -145,6 +150,7 @@
             // 
             this.attendanceStatusDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.attendanceStatusDataGridViewTextBoxColumn.DataPropertyName = "AttendanceStatus";
+            this.attendanceStatusDataGridViewTextBoxColumn.FillWeight = 170F;
             this.attendanceStatusDataGridViewTextBoxColumn.HeaderText = "AttendanceStatus";
             this.attendanceStatusDataGridViewTextBoxColumn.Name = "attendanceStatusDataGridViewTextBoxColumn";
             // 
@@ -178,21 +184,22 @@
             // 
             // cmdAdd
             // 
-            this.cmdAdd.Location = new System.Drawing.Point(145, 164);
+            this.cmdAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdAdd.Location = new System.Drawing.Point(159, 164);
             this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
+            this.cmdAdd.Size = new System.Drawing.Size(75, 29);
             this.cmdAdd.TabIndex = 7;
             this.cmdAdd.Text = "Add";
-            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // label4
             // 
             this.label4.AutoSize = true;
-            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label4.Location = new System.Drawing.Point(257, 9);
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label4.Location = new System.Drawing.Point(276, 9);
             this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(221, 29);
+            this.label4.Size = new System.Drawing.Size(268, 33);
             this.label4.TabIndex = 8;
             this.label4.Text = "Student Attendance";
             // 
@@ -202,18 +209,20 @@
             // 
             // cmdShow
             // 
-            this.cmdShow.Location = new System.Drawing.Point(48, 164);
+            this.cmdShow.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShow.Location = new System.Drawing.Point(60, 164);
             this.cmdShow.Name = "cmdShow";
-            this.cmdShow.Size = new System.Drawing.Size(75, 23);
+            this.cmdShow.Size = new System.Drawing.Size(75, 29);
             this.cmdShow.TabIndex = 9;
             this.cmdShow.Text = "Show All";
-            this.cmdShow.UseVisualStyleBackColor = true;
+            this.cmdShow.UseVisualStyleBackColor = false;
             this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
             // 
             // StudentAttendance
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(690, 330);
             this.Controls.Add(this.cmdShow);
             this.Controls.Add(this.label4);
@@ -250,11 +259,11 @@
         private ProjectBDataSet8 projectBDataSet8;
         private System.Windows.Forms.BindingSource studentAttendanceBindingSource;
         private ProjectBDataSet8TableAdapters.StudentAttendanceTableAdapter studentAttendanceTableAdapter;
+        private System.Windows.Forms.Button cmdShow;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendanceIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn studentIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn attendanceStatusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.Button cmdShow;
     }
 }

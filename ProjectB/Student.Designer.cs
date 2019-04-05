@@ -174,12 +174,13 @@
             // 
             // cmdAdd
             // 
+            this.cmdAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.cmdAdd.Location = new System.Drawing.Point(179, 219);
             this.cmdAdd.Name = "cmdAdd";
             this.cmdAdd.Size = new System.Drawing.Size(80, 34);
             this.cmdAdd.TabIndex = 15;
             this.cmdAdd.Text = "Add";
-            this.cmdAdd.UseVisualStyleBackColor = true;
+            this.cmdAdd.UseVisualStyleBackColor = false;
             this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // dataStudent
@@ -219,6 +220,7 @@
             // 
             this.firstNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.firstNameDataGridViewTextBoxColumn.DataPropertyName = "FirstName";
+            this.firstNameDataGridViewTextBoxColumn.FillWeight = 150F;
             this.firstNameDataGridViewTextBoxColumn.HeaderText = "FirstName";
             this.firstNameDataGridViewTextBoxColumn.Name = "firstNameDataGridViewTextBoxColumn";
             // 
@@ -226,6 +228,7 @@
             // 
             this.lastNameDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.lastNameDataGridViewTextBoxColumn.DataPropertyName = "LastName";
+            this.lastNameDataGridViewTextBoxColumn.FillWeight = 150F;
             this.lastNameDataGridViewTextBoxColumn.HeaderText = "LastName";
             this.lastNameDataGridViewTextBoxColumn.Name = "lastNameDataGridViewTextBoxColumn";
             // 
@@ -247,7 +250,8 @@
             // 
             this.registrationNumberDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.registrationNumberDataGridViewTextBoxColumn.DataPropertyName = "RegistrationNumber";
-            this.registrationNumberDataGridViewTextBoxColumn.HeaderText = "RegistrationNumber";
+            this.registrationNumberDataGridViewTextBoxColumn.FillWeight = 200F;
+            this.registrationNumberDataGridViewTextBoxColumn.HeaderText = "Registration No,";
             this.registrationNumberDataGridViewTextBoxColumn.Name = "registrationNumberDataGridViewTextBoxColumn";
             // 
             // statusDataGridViewTextBoxColumn
@@ -303,6 +307,7 @@
             // 
             // cbstatus
             // 
+            this.cbstatus.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbstatus.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbstatus.Items.AddRange(new object[] {
             "Active",
@@ -327,12 +332,13 @@
             // 
             // cmd_show
             // 
+            this.cmd_show.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.cmd_show.Location = new System.Drawing.Point(70, 221);
             this.cmd_show.Name = "cmd_show";
             this.cmd_show.Size = new System.Drawing.Size(75, 32);
             this.cmd_show.TabIndex = 18;
             this.cmd_show.Text = "Show All";
-            this.cmd_show.UseVisualStyleBackColor = true;
+            this.cmd_show.UseVisualStyleBackColor = false;
             this.cmd_show.Click += new System.EventHandler(this.cmd_show_Click);
             // 
             // Student
@@ -394,6 +400,7 @@
         private ProjectBDataSet2TableAdapters.StudentTableAdapter studentTableAdapter1;
         private System.Windows.Forms.ComboBox cbstatus;
         private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.Button cmd_show;
         private System.Windows.Forms.DataGridViewTextBoxColumn dataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn firstNameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn lastNameDataGridViewTextBoxColumn;
@@ -403,7 +410,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn statusDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn edit;
         private System.Windows.Forms.DataGridViewButtonColumn delete;
-        private System.Windows.Forms.Button cmd_show;
     }
 }
 

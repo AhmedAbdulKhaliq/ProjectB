@@ -40,10 +40,6 @@
             this.cmbAssessmentId = new System.Windows.Forms.ComboBox();
             this.label7 = new System.Windows.Forms.Label();
             this.dataAssessmentComponent = new System.Windows.Forms.DataGridView();
-            this.assessmentComponentBindingSource = new System.Windows.Forms.BindingSource(this.components);
-            this.projectBDataSet6 = new ProjectB.ProjectBDataSet6();
-            this.assessmentComponentTableAdapter = new ProjectB.ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter();
-            this.cmdAdd = new System.Windows.Forms.Button();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.nameDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rubricIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -53,6 +49,10 @@
             this.assessmentIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.Edit = new System.Windows.Forms.DataGridViewButtonColumn();
             this.Delete = new System.Windows.Forms.DataGridViewButtonColumn();
+            this.assessmentComponentBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.projectBDataSet6 = new ProjectB.ProjectBDataSet6();
+            this.assessmentComponentTableAdapter = new ProjectB.ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter();
+            this.cmdAdd = new System.Windows.Forms.Button();
             this.cmdShow = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.dataAssessmentComponent)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.assessmentComponentBindingSource)).BeginInit();
@@ -109,6 +109,7 @@
             this.txtName.Name = "txtName";
             this.txtName.Size = new System.Drawing.Size(121, 20);
             this.txtName.TabIndex = 6;
+            this.txtName.TextChanged += new System.EventHandler(this.txtName_TextChanged);
             // 
             // txtMarks
             // 
@@ -116,9 +117,11 @@
             this.txtMarks.Name = "txtMarks";
             this.txtMarks.Size = new System.Drawing.Size(121, 20);
             this.txtMarks.TabIndex = 7;
+            this.txtMarks.TextChanged += new System.EventHandler(this.txtMarks_TextChanged);
             // 
             // cmbRubricId
             // 
+            this.cmbRubricId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRubricId.FormattingEnabled = true;
             this.cmbRubricId.Location = new System.Drawing.Point(109, 85);
             this.cmbRubricId.Name = "cmbRubricId";
@@ -129,6 +132,7 @@
             // 
             // cmbAssessmentId
             // 
+            this.cmbAssessmentId.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbAssessmentId.FormattingEnabled = true;
             this.cmbAssessmentId.Location = new System.Drawing.Point(109, 141);
             this.cmbAssessmentId.Name = "cmbAssessmentId";
@@ -139,10 +143,10 @@
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label7.Location = new System.Drawing.Point(190, 9);
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label7.Location = new System.Drawing.Point(255, 9);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(245, 25);
+            this.label7.Size = new System.Drawing.Size(333, 33);
             this.label7.TabIndex = 12;
             this.label7.Text = "Assessment Component";
             // 
@@ -152,6 +156,7 @@
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
             this.dataAssessmentComponent.AutoGenerateColumns = false;
+            this.dataAssessmentComponent.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataAssessmentComponent.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataAssessmentComponent.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.idDataGridViewTextBoxColumn,
@@ -164,40 +169,17 @@
             this.Edit,
             this.Delete});
             this.dataAssessmentComponent.DataSource = this.assessmentComponentBindingSource;
-            this.dataAssessmentComponent.Location = new System.Drawing.Point(236, 57);
+            this.dataAssessmentComponent.Location = new System.Drawing.Point(250, 59);
             this.dataAssessmentComponent.Name = "dataAssessmentComponent";
-            this.dataAssessmentComponent.Size = new System.Drawing.Size(499, 150);
+            this.dataAssessmentComponent.Size = new System.Drawing.Size(499, 293);
             this.dataAssessmentComponent.TabIndex = 13;
             this.dataAssessmentComponent.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataAssessmentComponent_CellContentClick);
-            // 
-            // assessmentComponentBindingSource
-            // 
-            this.assessmentComponentBindingSource.DataMember = "AssessmentComponent";
-            this.assessmentComponentBindingSource.DataSource = this.projectBDataSet6;
-            // 
-            // projectBDataSet6
-            // 
-            this.projectBDataSet6.DataSetName = "ProjectBDataSet6";
-            this.projectBDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
-            // 
-            // assessmentComponentTableAdapter
-            // 
-            this.assessmentComponentTableAdapter.ClearBeforeFill = true;
-            // 
-            // cmdAdd
-            // 
-            this.cmdAdd.Location = new System.Drawing.Point(109, 184);
-            this.cmdAdd.Name = "cmdAdd";
-            this.cmdAdd.Size = new System.Drawing.Size(75, 23);
-            this.cmdAdd.TabIndex = 14;
-            this.cmdAdd.Text = "Save";
-            this.cmdAdd.UseVisualStyleBackColor = true;
-            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
             // 
             // idDataGridViewTextBoxColumn
             // 
             this.idDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.idDataGridViewTextBoxColumn.DataPropertyName = "Id";
+            this.idDataGridViewTextBoxColumn.FillWeight = 60F;
             this.idDataGridViewTextBoxColumn.HeaderText = "Id";
             this.idDataGridViewTextBoxColumn.Name = "idDataGridViewTextBoxColumn";
             this.idDataGridViewTextBoxColumn.ReadOnly = true;
@@ -213,6 +195,7 @@
             // 
             this.rubricIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.rubricIdDataGridViewTextBoxColumn.DataPropertyName = "RubricId";
+            this.rubricIdDataGridViewTextBoxColumn.FillWeight = 120F;
             this.rubricIdDataGridViewTextBoxColumn.HeaderText = "RubricId";
             this.rubricIdDataGridViewTextBoxColumn.Name = "rubricIdDataGridViewTextBoxColumn";
             // 
@@ -220,14 +203,14 @@
             // 
             this.totalMarksDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.totalMarksDataGridViewTextBoxColumn.DataPropertyName = "TotalMarks";
-            this.totalMarksDataGridViewTextBoxColumn.FillWeight = 150F;
-            this.totalMarksDataGridViewTextBoxColumn.HeaderText = "TotalMarks";
+            this.totalMarksDataGridViewTextBoxColumn.HeaderText = "Marks";
             this.totalMarksDataGridViewTextBoxColumn.Name = "totalMarksDataGridViewTextBoxColumn";
             // 
             // dateCreatedDataGridViewTextBoxColumn
             // 
             this.dateCreatedDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dateCreatedDataGridViewTextBoxColumn.DataPropertyName = "DateCreated";
+            this.dateCreatedDataGridViewTextBoxColumn.FillWeight = 180F;
             this.dateCreatedDataGridViewTextBoxColumn.HeaderText = "DateCreated";
             this.dateCreatedDataGridViewTextBoxColumn.Name = "dateCreatedDataGridViewTextBoxColumn";
             // 
@@ -235,6 +218,7 @@
             // 
             this.dateUpdatedDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.dateUpdatedDataGridViewTextBoxColumn.DataPropertyName = "DateUpdated";
+            this.dateUpdatedDataGridViewTextBoxColumn.FillWeight = 180F;
             this.dateUpdatedDataGridViewTextBoxColumn.HeaderText = "DateUpdated";
             this.dateUpdatedDataGridViewTextBoxColumn.Name = "dateUpdatedDataGridViewTextBoxColumn";
             // 
@@ -242,6 +226,7 @@
             // 
             this.assessmentIdDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.assessmentIdDataGridViewTextBoxColumn.DataPropertyName = "AssessmentId";
+            this.assessmentIdDataGridViewTextBoxColumn.FillWeight = 185F;
             this.assessmentIdDataGridViewTextBoxColumn.HeaderText = "AssessmentId";
             this.assessmentIdDataGridViewTextBoxColumn.Name = "assessmentIdDataGridViewTextBoxColumn";
             // 
@@ -263,20 +248,47 @@
             this.Delete.ToolTipText = "Delete";
             this.Delete.UseColumnTextForButtonValue = true;
             // 
+            // assessmentComponentBindingSource
+            // 
+            this.assessmentComponentBindingSource.DataMember = "AssessmentComponent";
+            this.assessmentComponentBindingSource.DataSource = this.projectBDataSet6;
+            // 
+            // projectBDataSet6
+            // 
+            this.projectBDataSet6.DataSetName = "ProjectBDataSet6";
+            this.projectBDataSet6.SchemaSerializationMode = System.Data.SchemaSerializationMode.IncludeSchema;
+            // 
+            // assessmentComponentTableAdapter
+            // 
+            this.assessmentComponentTableAdapter.ClearBeforeFill = true;
+            // 
+            // cmdAdd
+            // 
+            this.cmdAdd.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdAdd.Location = new System.Drawing.Point(155, 184);
+            this.cmdAdd.Name = "cmdAdd";
+            this.cmdAdd.Size = new System.Drawing.Size(75, 29);
+            this.cmdAdd.TabIndex = 14;
+            this.cmdAdd.Text = "Save";
+            this.cmdAdd.UseVisualStyleBackColor = false;
+            this.cmdAdd.Click += new System.EventHandler(this.cmdAdd_Click);
+            // 
             // cmdShow
             // 
-            this.cmdShow.Location = new System.Drawing.Point(12, 184);
+            this.cmdShow.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShow.Location = new System.Drawing.Point(61, 184);
             this.cmdShow.Name = "cmdShow";
-            this.cmdShow.Size = new System.Drawing.Size(75, 23);
+            this.cmdShow.Size = new System.Drawing.Size(75, 29);
             this.cmdShow.TabIndex = 15;
             this.cmdShow.Text = "Show All";
-            this.cmdShow.UseVisualStyleBackColor = true;
+            this.cmdShow.UseVisualStyleBackColor = false;
             this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
             // 
             // AssessmentComponent
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(747, 336);
             this.Controls.Add(this.cmdShow);
             this.Controls.Add(this.cmdAdd);
@@ -319,6 +331,7 @@
         private ProjectBDataSet6TableAdapters.AssessmentComponentTableAdapter assessmentComponentTableAdapter;
         private System.Windows.Forms.Button cmdAdd;
         public System.Windows.Forms.DataGridView dataAssessmentComponent;
+        private System.Windows.Forms.Button cmdShow;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn nameDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn rubricIdDataGridViewTextBoxColumn;
@@ -328,6 +341,5 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn assessmentIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Edit;
         private System.Windows.Forms.DataGridViewButtonColumn Delete;
-        private System.Windows.Forms.Button cmdShow;
     }
 }

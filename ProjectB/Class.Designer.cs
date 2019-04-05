@@ -114,6 +114,7 @@
             // 
             this.calenderAttendance.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
+            this.calenderAttendance.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.calenderAttendance.Location = new System.Drawing.Point(215, -1);
             this.calenderAttendance.Name = "calenderAttendance";
             this.calenderAttendance.TabIndex = 2;

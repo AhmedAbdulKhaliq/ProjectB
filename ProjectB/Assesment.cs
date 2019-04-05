@@ -95,8 +95,61 @@ namespace ProjectB
             connection.Open();
             if (e.ColumnIndex == dataAssesment.Columns["delete"].Index)
             {
-
                 int row = e.RowIndex;
+                id = Convert.ToInt32(dataAssesment.Rows[row].Cells[0].Value);
+
+                int[] assessmentcomponent_array = new int[50];
+                int i = 0;
+                string qeury = "Select Id from AssessmentComponent where AssessmentId = '" + id + "'";
+                SqlCommand com = new SqlCommand(qeury, connection);
+                com.Parameters.Add(new SqlParameter("0", 1));
+                SqlDataReader reader1 = com.ExecuteReader();
+                while (reader1.Read())
+                {
+                    //comboCloNo.Items.Add(reader[0]);
+                    //cmbCloID.Items.Add(reader[0]);
+                    //cmbRubricID.Items.Add(reader1[0]);
+                    assessmentcomponent_array[i] = Convert.ToInt32(reader1[0]);
+                    i++;
+
+                }
+                int c = assessmentcomponent_array[0];
+                int d = assessmentcomponent_array[1]; 
+                reader1.Close();
+                foreach(int componentid in assessmentcomponent_array)
+                {
+                    string qeury1 = "Delete from StudentResult where AssessmentComponentId = '" + componentid + "'";
+                    SqlCommand com1 = new SqlCommand(qeury1, connection);
+                    com1.ExecuteNonQuery();
+
+                    string qeury2 = "Delete from AssessmentComponent where Id = '" + componentid + "'";
+                    SqlCommand com2 = new SqlCommand(qeury2, connection);
+                    com2.ExecuteNonQuery();
+                }
+                string Qeury3 = "Delete from dbo.Assessment where Id = '" + id + "'";
+                SqlCommand cmd3 = new SqlCommand(Qeury3, connection);
+                cmd3.ExecuteNonQuery();
+                MessageBox.Show("Assessment Deleted");
+                using (SqlConnection sqlcon = new SqlConnection(constring))
+                {
+                    sqlcon.Open();
+                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Assessment", sqlcon);
+                    DataTable dtbl = new DataTable();
+                    sqlDA.Fill(dtbl);
+
+                    dataAssesment.DataSource = dtbl;
+                }
+
+
+
+
+
+
+
+
+
+
+                /*int row = e.RowIndex;
                 int id = Convert.ToInt32(dataAssesment.Rows[row].Cells[0].Value);
 
                 string run = "Delete from dbo.AssessmentComponent where AssessmentId = '" + id + "'";
@@ -106,7 +159,7 @@ namespace ProjectB
                 SqlCommand cmd = new SqlCommand(Qeury, connection);
                 cmd.ExecuteNonQuery();
                 this.dataAssesment.Rows.RemoveAt(e.RowIndex);
-                MessageBox.Show("Assesment Information has been deleted");
+                MessageBox.Show("Assesment Information has been deleted");*/
             }
             if (e.ColumnIndex == dataAssesment.Columns["edit"].Index)
             {
@@ -130,7 +183,13 @@ namespace ProjectB
 
         private void txtTitle_TextChanged(object sender, EventArgs e)
         {
-
+            foreach (char a in txtTitle.Text)
+            {
+                if (a == '_' || a == '-' || a == '@')
+                {
+                    MessageBox.Show("Invalid  Details ");
+                }
+            }
         }
 
         private void txtMarks_TextChanged(object sender, EventArgs e)

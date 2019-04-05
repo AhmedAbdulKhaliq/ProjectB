@@ -177,7 +177,7 @@ namespace ProjectB
             {
                 int row = e.RowIndex;
                 int id = Convert.ToInt32(dataAssessmentComponent.Rows[row].Cells[0].Value);
-                string Qeury1 = "Delete from dbo.StudentResult where ID = '" + id + "'";
+                string Qeury1 = "Delete from dbo.StudentResult where AssessmentComponentId = '" + id + "'";
                 SqlConnection connection = new SqlConnection(constring);
                 connection.Open();
                 SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
@@ -205,6 +205,22 @@ namespace ProjectB
 
                 dataAssessmentComponent.DataSource = dtbl;
             }
+
+        }
+
+        private void txtMarks_TextChanged(object sender, EventArgs e)
+        {
+            foreach (char a in txtMarks.Text)
+            {
+                if (!char.IsNumber(a))
+                {
+                    MessageBox.Show("Enter Valid Marks");
+                }
+            }
+        }
+
+        private void txtName_TextChanged(object sender, EventArgs e)
+        {
 
         }
     }

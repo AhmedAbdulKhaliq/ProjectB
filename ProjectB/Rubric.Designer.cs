@@ -39,6 +39,7 @@
             this.txtDetails = new System.Windows.Forms.TextBox();
             this.txtRubricId = new System.Windows.Forms.TextBox();
             this.tab2 = new System.Windows.Forms.TabPage();
+            this.cmdShow = new System.Windows.Forms.Button();
             this.dataRubric = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.detailsDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -48,6 +49,7 @@
             this.rubricBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.projectBDataSet3 = new ProjectB.ProjectBDataSet3();
             this.RubricLevel = new System.Windows.Forms.TabPage();
+            this.cmdShowRubricLevel = new System.Windows.Forms.Button();
             this.dataGridView1 = new System.Windows.Forms.DataGridView();
             this.idDataGridViewTextBoxColumn1 = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.rubricIdDataGridViewTextBoxColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -67,8 +69,6 @@
             this.rubricTableAdapter = new ProjectB.ProjectBDataSet3TableAdapters.RubricTableAdapter();
             this.label4 = new System.Windows.Forms.Label();
             this.rubricLevelTableAdapter = new ProjectB.ProjectBDataSet4TableAdapters.RubricLevelTableAdapter();
-            this.cmdShow = new System.Windows.Forms.Button();
-            this.cmdShowRubricLevel = new System.Windows.Forms.Button();
             this.ShowRubric.SuspendLayout();
             this.AddRubric.SuspendLayout();
             this.tab2.SuspendLayout();
@@ -162,6 +162,7 @@
             // 
             // comboCloNo
             // 
+            this.comboCloNo.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboCloNo.FormattingEnabled = true;
             this.comboCloNo.Location = new System.Drawing.Point(103, 53);
             this.comboCloNo.Name = "comboCloNo";
@@ -198,6 +199,17 @@
             this.tab2.Size = new System.Drawing.Size(799, 278);
             this.tab2.TabIndex = 1;
             this.tab2.Text = "Show Rubric";
+            // 
+            // cmdShow
+            // 
+            this.cmdShow.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShow.Location = new System.Drawing.Point(283, 6);
+            this.cmdShow.Name = "cmdShow";
+            this.cmdShow.Size = new System.Drawing.Size(92, 23);
+            this.cmdShow.TabIndex = 1;
+            this.cmdShow.Text = "Show All";
+            this.cmdShow.UseVisualStyleBackColor = false;
+            this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
             // 
             // dataRubric
             // 
@@ -291,6 +303,17 @@
             this.RubricLevel.Text = "Add Level";
             this.RubricLevel.Click += new System.EventHandler(this.tabPage1_Click_1);
             // 
+            // cmdShowRubricLevel
+            // 
+            this.cmdShowRubricLevel.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdShowRubricLevel.Location = new System.Drawing.Point(103, 105);
+            this.cmdShowRubricLevel.Name = "cmdShowRubricLevel";
+            this.cmdShowRubricLevel.Size = new System.Drawing.Size(75, 31);
+            this.cmdShowRubricLevel.TabIndex = 21;
+            this.cmdShowRubricLevel.Text = "Show All";
+            this.cmdShowRubricLevel.UseVisualStyleBackColor = false;
+            this.cmdShowRubricLevel.Click += new System.EventHandler(this.cmdShowRubricLevel_Click);
+            // 
             // dataGridView1
             // 
             this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -309,7 +332,7 @@
             this.dataGridView1.DataSource = this.rubricLevelBindingSource;
             this.dataGridView1.Location = new System.Drawing.Point(339, 16);
             this.dataGridView1.Name = "dataGridView1";
-            this.dataGridView1.Size = new System.Drawing.Size(454, 150);
+            this.dataGridView1.Size = new System.Drawing.Size(454, 262);
             this.dataGridView1.TabIndex = 20;
             this.dataGridView1.CellContentClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dataGridView1_CellContentClick);
             // 
@@ -339,6 +362,7 @@
             // 
             this.measurementLevelDataGridViewTextBoxColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
             this.measurementLevelDataGridViewTextBoxColumn.DataPropertyName = "MeasurementLevel";
+            this.measurementLevelDataGridViewTextBoxColumn.FillWeight = 200F;
             this.measurementLevelDataGridViewTextBoxColumn.HeaderText = "MeasurementLevel";
             this.measurementLevelDataGridViewTextBoxColumn.Name = "measurementLevelDataGridViewTextBoxColumn";
             // 
@@ -373,16 +397,18 @@
             // 
             // cmdAddLevel
             // 
+            this.cmdAddLevel.BackColor = System.Drawing.SystemColors.ScrollBar;
             this.cmdAddLevel.Location = new System.Drawing.Point(245, 105);
             this.cmdAddLevel.Name = "cmdAddLevel";
             this.cmdAddLevel.Size = new System.Drawing.Size(75, 31);
             this.cmdAddLevel.TabIndex = 19;
             this.cmdAddLevel.Text = "Add";
-            this.cmdAddLevel.UseVisualStyleBackColor = true;
+            this.cmdAddLevel.UseVisualStyleBackColor = false;
             this.cmdAddLevel.Click += new System.EventHandler(this.cmdAddLevel_Click);
             // 
             // cmbRubricID
             // 
+            this.cmbRubricID.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cmbRubricID.FormattingEnabled = true;
             this.cmbRubricID.Location = new System.Drawing.Point(140, 16);
             this.cmbRubricID.Name = "cmbRubricID";
@@ -453,26 +479,6 @@
             // 
             this.rubricLevelTableAdapter.ClearBeforeFill = true;
             // 
-            // cmdShow
-            // 
-            this.cmdShow.Location = new System.Drawing.Point(283, 6);
-            this.cmdShow.Name = "cmdShow";
-            this.cmdShow.Size = new System.Drawing.Size(92, 23);
-            this.cmdShow.TabIndex = 1;
-            this.cmdShow.Text = "Show All";
-            this.cmdShow.UseVisualStyleBackColor = true;
-            this.cmdShow.Click += new System.EventHandler(this.cmdShow_Click);
-            // 
-            // cmdShowRubricLevel
-            // 
-            this.cmdShowRubricLevel.Location = new System.Drawing.Point(103, 105);
-            this.cmdShowRubricLevel.Name = "cmdShowRubricLevel";
-            this.cmdShowRubricLevel.Size = new System.Drawing.Size(75, 31);
-            this.cmdShowRubricLevel.TabIndex = 21;
-            this.cmdShowRubricLevel.Text = "Show All";
-            this.cmdShowRubricLevel.UseVisualStyleBackColor = true;
-            this.cmdShowRubricLevel.Click += new System.EventHandler(this.cmdShowRubricLevel_Click);
-            // 
             // Rubric
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -535,14 +541,14 @@
         private ProjectBDataSet4 projectBDataSet4;
         private System.Windows.Forms.BindingSource rubricLevelBindingSource;
         private ProjectBDataSet4TableAdapters.RubricLevelTableAdapter rubricLevelTableAdapter;
+        public System.Windows.Forms.ComboBox comboCloNo;
+        private System.Windows.Forms.Button cmdShow;
+        private System.Windows.Forms.Button cmdShowRubricLevel;
         private System.Windows.Forms.DataGridViewTextBoxColumn idDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn rubricIdDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn detailsDataGridViewTextBoxColumn1;
         private System.Windows.Forms.DataGridViewTextBoxColumn measurementLevelDataGridViewTextBoxColumn;
         private System.Windows.Forms.DataGridViewButtonColumn Remove;
         private System.Windows.Forms.DataGridViewButtonColumn Editt;
-        public System.Windows.Forms.ComboBox comboCloNo;
-        private System.Windows.Forms.Button cmdShow;
-        private System.Windows.Forms.Button cmdShowRubricLevel;
     }
 }

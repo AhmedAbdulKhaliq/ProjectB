@@ -113,11 +113,17 @@ namespace ProjectB
             rubric = null;
             assessment = null;
             component = null;
+            result = null;
+            classattendance = null;
+            stdattendance = null;
+
             stdflag = false;
             cloflag = false;
             rbflag = false;
             assessmentflag = false;
             componentflag = false;
+            studentresultflag = false;
+            classattendanceflag = false;
             studentresultflag = false;
             //throw new NotImplementedException();
         }

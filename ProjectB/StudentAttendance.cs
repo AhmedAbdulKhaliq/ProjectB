@@ -82,7 +82,7 @@ namespace ProjectB
             string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd = new SqlConnection(constring);
             cmd.Open();
-            String s = "SELECT RegistrationNumber FROM Student";
+            String s = "SELECT RegistrationNumber FROM Student where Status = 5";
             SqlCommand command = new SqlCommand(s, cmd);
             command.Parameters.Add(new SqlParameter("0", 1));
             SqlDataReader reader = command.ExecuteReader();
