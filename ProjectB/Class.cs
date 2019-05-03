@@ -18,66 +18,77 @@ namespace ProjectB
             InitializeComponent();
         }
         int id;
+        bool unique_date;
+        void checkdate(DateTime d)
+        {
+            string qeury = " Select Id from ClassAttendance where AttendanceDate ='" + d.Date + "'";
+            SqlConnection conDataBase = new SqlConnection(constring);
+            conDataBase.Open();
+
+            SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+            cmdDataBase.Parameters.Add(new SqlParameter("0", 1));
+            SqlDataReader reader1 = cmdDataBase.ExecuteReader();
+            if (reader1.HasRows)
+            {
+                unique_date = false;
+            }
+            else
+            {
+                unique_date = true;
+            }
+            reader1.Close();
+            conDataBase.Close();
+        }
         string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
 
 
         private void Class_Load(object sender, EventArgs e)
         {
-            // TODO: This line of code loads data into the 'projectBDataSet7.ClassAttendance' table. You can move, or remove it, as needed.
+            
             this.classAttendanceTableAdapter.Fill(this.projectBDataSet7.ClassAttendance);
 
         }
 
         private void cmdAdd_Click(object sender, EventArgs e)
         {
-            if (cmdAdd.Text == "Add")
+            DateTime d = this.calenderAttendance.SelectionEnd.Date;
+            checkdate(d);
+            if (unique_date == true)
             {
-                string qeury = "insert into dbo.ClassAttendance(AttendanceDate) values('" + this.calenderAttendance.SelectionEnd.Date + "')";
-                SqlConnection conDataBase = new SqlConnection(constring);
-
-                SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                SqlDataReader myreader;
-                conDataBase.Open();
-                myreader = cmdDataBase.ExecuteReader();
-                MessageBox.Show("Class Attendance Date Stored");
-                while (myreader.Read())
+                if (cmdAdd.Text == "Add")
                 {
+                    string qeury = "insert into dbo.ClassAttendance(AttendanceDate) values('" + this.calenderAttendance.SelectionEnd.Date + "')";
+                    SqlConnection conDataBase = new SqlConnection(constring);
 
+                    SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                    SqlDataReader myreader;
+                    conDataBase.Open();
+                    myreader = cmdDataBase.ExecuteReader();
+                    MessageBox.Show("Class Attendance Date Stored");
+                    while (myreader.Read())
+                    {
+
+                    }
+                    using (SqlConnection sqlcon = new SqlConnection(constring))
+                    {
+                        sqlcon.Open();
+                        SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.ClassAttendance", sqlcon);
+                        DataTable dtbl = new DataTable();
+                        sqlDA.Fill(dtbl);
+
+                        dataClass.DataSource = dtbl;
+                    }
                 }
-                using (SqlConnection sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.ClassAttendance", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
-
-                    dataClass.DataSource = dtbl;
-                }
-                            }
-            if (cmdAdd.Text == "Update")
-            {
-                SqlConnection connection = new SqlConnection(constring);
-                connection.Open();
-                string Qeury = "Update dbo.ClassAttendance Set  AttendanceDate ='" + calenderAttendance.SelectionEnd +  "' Where Id ='" + id + "' ";
-
-                SqlCommand cmd = new SqlCommand(Qeury, connection);
-                cmd.ExecuteNonQuery();
-                MessageBox.Show("Class Date Updated");
+                
+                
                 
 
-
-
-                using (SqlConnection sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.ClassAttendance", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
-
-                    dataClass.DataSource = dtbl;
-                }
-
             }
+            if (unique_date == false)
+            {
+                MessageBox.Show("Date Already Exists");
+            }
+
 
         }
 
@@ -91,9 +102,7 @@ namespace ProjectB
 
 
 
-                //txtTitle.Text = dataAssesment.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
-                //txtMarks.Text = dataAssesment.Rows[e.RowIndex].Cells[3].FormattedValue.ToString();
-                //txtWieght.Text = dataAssesment.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
+                
                 string date = dataClass.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
                 DateTime d = Convert.ToDateTime(date);
                 calenderAttendance.SetDate(d);
@@ -113,18 +122,14 @@ namespace ProjectB
                 string c = "Delete  from dbo.StudentAttendance where AttendanceId = '" + id + "'";
                 SqlCommand cmd2 = new SqlCommand(c, connection);
                 cmd2.ExecuteNonQuery();
-                //string Qeury = "Delete from dbo.Assessment where ID = '" + id + "'";
-                //SqlCommand cmd = new SqlCommand(Qeury, connection);
-                //cmd.ExecuteNonQuery();
+                
 
 
 
                 string run = "Delete from dbo.ClassAttendance where ID = '" + id + "'";
                 SqlCommand cmd1 = new SqlCommand(run, connection);
                 cmd1.ExecuteNonQuery();
-                //string Qeury = "Delete from dbo.Assessment where ID = '" + id + "'";
-                //SqlCommand cmd = new SqlCommand(Qeury, connection);
-                //cmd.ExecuteNonQuery();
+                
                 this.dataClass.Rows.RemoveAt(e.RowIndex);
                 MessageBox.Show("Class Date has been deleted");
             }

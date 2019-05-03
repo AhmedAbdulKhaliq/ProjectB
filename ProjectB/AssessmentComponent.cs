@@ -29,9 +29,7 @@ namespace ProjectB
         void UpdateValues()
         {
             this.assessmentComponentTableAdapter.Fill(this.projectBDataSet6.AssessmentComponent);
-            // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
-            //this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
-            //asse
+            
             string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd = new SqlConnection(constring);
             cmd.Open();
@@ -51,9 +49,7 @@ namespace ProjectB
         void UpdateValue()
         {
             this.assessmentComponentTableAdapter.Fill(this.projectBDataSet6.AssessmentComponent);
-            // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
-            //this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
-            //asse
+            
             string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd = new SqlConnection(constring);
             cmd.Open();

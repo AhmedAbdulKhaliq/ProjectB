@@ -14,6 +14,28 @@ namespace ProjectB
     {
         int id;
         int StatusId;
+        bool unique_regno;
+        void check_reg(string regno)
+        {
+            string qeury = " Select Id from Student where RegistrationNumber ='" + txtRegistrationNumber.Text + "'";
+            SqlConnection conDataBase = new SqlConnection(constring);
+            conDataBase.Open();
+
+            SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+            cmdDataBase.Parameters.Add(new SqlParameter("0", 1));
+            SqlDataReader reader1 = cmdDataBase.ExecuteReader();
+            if (reader1.HasRows)
+            {
+                unique_regno = false;
+            }
+            else
+            {
+                unique_regno= true;
+            }
+            reader1.Close();
+            conDataBase.Close();
+
+        }
         public Student()
         {
             InitializeComponent();
@@ -170,81 +192,89 @@ namespace ProjectB
                     flag = true;
 
                 }
-
+                check_reg(txtRegistrationNumber.Text);
 
 
                 if (flag == false)
                 {
-                    if(cmdAdd.Text == "Add")
+                    if(unique_regno == true)
                     {
-                        string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + fun(this.cbstatus.Text) + "')";
-                        SqlConnection conDataBase = new SqlConnection(constring);
-
-                        SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
-                        SqlDataReader myreader;
-                        conDataBase.Open();
-                        myreader = cmdDataBase.ExecuteReader();
-                        MessageBox.Show("Student information Stored");
-                        while (myreader.Read())
+                        if (cmdAdd.Text == "Add")
                         {
+                            string qeury = "insert into dbo.Student( FirstName,LastName,Contact,Email,RegistrationNumber,Status) values('" + this.txtFirstName.Text + "','" + this.txtLastName.Text + "','" + this.txtContact.Text + "','" + this.txtEmail.Text + "','" + this.txtRegistrationNumber.Text + "','" + fun(this.cbstatus.Text) + "')";
+                            SqlConnection conDataBase = new SqlConnection(constring);
+
+                            SqlCommand cmdDataBase = new SqlCommand(qeury, conDataBase);
+                            SqlDataReader myreader;
+                            conDataBase.Open();
+                            myreader = cmdDataBase.ExecuteReader();
+                            MessageBox.Show("Student information Stored");
+                            while (myreader.Read())
+                            {
+
+                            }
+                            using (SqlConnection sqlcon = new SqlConnection(constring))
+                            {
+                                sqlcon.Open();
+                                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
+                                DataTable dtbl = new DataTable();
+                                sqlDA.Fill(dtbl);
+
+                                dataStudent.DataSource = dtbl;
+                            }
+                            txtFirstName.Text = " ";
+                            txtLastName.Text = "";
+                            txtEmail.Text = "";
+                            txtContact.Text = "";
+                            txtRegistrationNumber.Text = "";
+                            cbstatus.Text = "";
+
 
                         }
-                        using (SqlConnection sqlcon = new SqlConnection(constring))
+                        if (cmdAdd.Text == "Update")
                         {
-                            sqlcon.Open();
-                            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
-                            DataTable dtbl = new DataTable();
-                            sqlDA.Fill(dtbl);
+                            SqlConnection connection = new SqlConnection(constring);
+                            connection.Open();
+                            string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + fun(cbstatus.Text) + "' Where Id ='" + id + "' ";
+                            //
+                            SqlCommand cmd = new SqlCommand(Qeury, connection);
+                            cmd.ExecuteNonQuery();
+                            MessageBox.Show("Student Information Updated");
+                            cmdAdd.Text = "Add";
+                            txtFirstName.Text = " ";
+                            txtLastName.Text = "";
+                            txtEmail.Text = "";
+                            txtContact.Text = "";
+                            txtRegistrationNumber.Text = "";
+                            cbstatus.Text = "";
 
-                            dataStudent.DataSource = dtbl;
+
+
+
+
+
+
+
+                            using (SqlConnection sqlcon = new SqlConnection(constring))
+                            {
+                                sqlcon.Open();
+                                SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
+                                DataTable dtbl = new DataTable();
+                                sqlDA.Fill(dtbl);
+
+                                dataStudent.DataSource = dtbl;
+                            }
+
+
+
                         }
-                        txtFirstName.Text = " ";
-                        txtLastName.Text = "";
-                        txtEmail.Text = "";
-                        txtContact.Text = "";
-                        txtRegistrationNumber.Text = "";
-                        cbstatus.Text = "";
-
 
                     }
-                    if (cmdAdd.Text == "Update")
+                    if(unique_regno == false)
                     {
-                        SqlConnection connection = new SqlConnection(constring);
-                        connection.Open();
-                        string Qeury = "Update dbo.student Set FirstName ='" + txtFirstName.Text + "',LastName ='" + txtLastName.Text + "',Contact ='" + txtContact.Text + "',Email ='" + txtEmail.Text + "',RegistrationNumber ='" + txtRegistrationNumber.Text + "',Status ='" + fun(cbstatus.Text) + "' Where Id ='" + id + "' ";
-                        //
-                        SqlCommand cmd = new SqlCommand(Qeury, connection);
-                        cmd.ExecuteNonQuery();
-                        MessageBox.Show("Student Information Updated");
-                        cmdAdd.Text = "Add";
-                        txtFirstName.Text = " ";
-                        txtLastName.Text = "";
-                        txtEmail.Text = "";
-                        txtContact.Text = "";
-                        txtRegistrationNumber.Text = "";
-                        cbstatus.Text = "";
-
-
-
-
-
-
-
-
-                        using (SqlConnection sqlcon = new SqlConnection(constring))
-                        {
-                            sqlcon.Open();
-                            SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.Student", sqlcon);
-                            DataTable dtbl = new DataTable();
-                            sqlDA.Fill(dtbl);
-
-                            dataStudent.DataSource = dtbl;
-                        }
-
-
+                        MessageBox.Show("Student with Same Reg Number Already Exists");
 
                     }
-
                 }
 
                 
@@ -254,33 +284,7 @@ namespace ProjectB
             {
                 throw (ex);
             }
-            /*char[] s = new char[10];
-            char check;
-            int i = 0;
-            foreach (char c in txtRegistrationNumber.Text)
-            {
-                s[i] = c;
-                i++;
-                //2016-CS-106
-
-
-            }
-            for (int j = 0; j < 4; j++)
-            {
-                check = s[j];
-                if (!char.IsDigit(check))
-                {
-                    MessageBox.Show("Invalid Registration number");
-                }
-
-
-
-
-
-
-
-            }
-            */
+            
 
         }
         /// <summary>
@@ -351,7 +355,7 @@ namespace ProjectB
 
     private void txtStatus_TextChanged(object sender, EventArgs e)
     {
-        //
+       
     }
 
     private void button1_Click(object sender, EventArgs e)

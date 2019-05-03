@@ -38,12 +38,13 @@
             // 
             // cmdGenerateReport
             // 
-            this.cmdGenerateReport.Location = new System.Drawing.Point(314, 93);
+            this.cmdGenerateReport.BackColor = System.Drawing.SystemColors.ScrollBar;
+            this.cmdGenerateReport.Location = new System.Drawing.Point(314, 82);
             this.cmdGenerateReport.Name = "cmdGenerateReport";
-            this.cmdGenerateReport.Size = new System.Drawing.Size(91, 28);
+            this.cmdGenerateReport.Size = new System.Drawing.Size(91, 39);
             this.cmdGenerateReport.TabIndex = 1;
             this.cmdGenerateReport.Text = "Generate Report";
-            this.cmdGenerateReport.UseVisualStyleBackColor = true;
+            this.cmdGenerateReport.UseVisualStyleBackColor = false;
             this.cmdGenerateReport.Click += new System.EventHandler(this.cmdGenerateReport_Click);
             // 
             // label1
@@ -68,6 +69,10 @@
             // dataGridView1
             // 
             this.dataGridView1.AllowUserToAddRows = false;
+            this.dataGridView1.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.dataGridView1.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataGridView1.BackgroundColor = System.Drawing.SystemColors.ActiveBorder;
             this.dataGridView1.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridView1.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.ObtainedMarks});
@@ -86,6 +91,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.BackColor = System.Drawing.SystemColors.InactiveCaption;
             this.ClientSize = new System.Drawing.Size(749, 352);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.linkLabel1);

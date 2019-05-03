@@ -30,7 +30,7 @@ namespace ProjectB
             {
                 conDataBase.Open();
                 reader = cmd.ExecuteReader();
-                //MessageBox.Show("Saved");
+                
                 while (reader.Read())
                 {
                     cmbStudentId.Items.Add(reader[0]);
@@ -49,7 +49,7 @@ namespace ProjectB
             {
                 conDataBase.Open();
                 reader1 = cmd1.ExecuteReader();
-                //MessageBox.Show("Saved");
+                
                 while (reader1.Read())
                 {
                     cmbTitle.Items.Add(reader1[0]);
@@ -77,12 +77,7 @@ namespace ProjectB
                 double totalmarks = Convert.ToDouble((level / 4) * marks);
                 dataGridView1.Rows[i].Cells["ObtainedMarks"].Value = totalmarks;
             }
-            //cmbStudentId.Items.Clear();
-            //cmbTitle.Items.Clear();
-            //cmbComponentId.Items.Clear();
-            //cmbDetails.Items.Clear();
-            //cmbLevel.Items.Clear();
-            //comboBox6.Items.Clear();
+            
         }
 
         private void cmbTitle_SelectedIndexChanged(object sender, EventArgs e)

@@ -65,8 +65,6 @@ namespace ProjectB
             SqlDataReader reader1 = com.ExecuteReader();
             while (reader1.Read())
             {
-                //comboCloNo.Items.Add(reader[0]);
-                //cmbCloID.Items.Add(reader[0]);
                 cmbRubricID.Items.Add(reader1[0]);
             }
             cmd2.Close();
@@ -142,7 +140,7 @@ namespace ProjectB
                 SqlCommand cmd2 = new SqlCommand(query3, connection);
                 connection.Open();
                 SqlDataReader reader1 = cmd2.ExecuteReader();
-                while(reader.Read())
+                while(reader1.Read())
                 {
                     int id = Convert.ToInt32(txtRubricId.Text);
                     if(id == Convert.ToInt32(txtRubricId.Text))
@@ -250,9 +248,6 @@ namespace ProjectB
                     SqlDataReader r2 = com1.ExecuteReader();
                     while (r2.Read())
                     {
-                        //comboCloNo.Items.Add(reader[0]);
-                        //cmbCloID.Items.Add(reader[0]);
-                        //cmbRubricID.Items.Add(reader1[0]);
                         rubric_level[j] = Convert.ToInt32(r2[0]);
                         j++;
 
@@ -266,9 +261,6 @@ namespace ProjectB
                     SqlDataReader r3 = com11.ExecuteReader();
                     while (r3.Read())
                     {
-                        //comboCloNo.Items.Add(reader[0]);
-                        //cmbCloID.Items.Add(reader[0]);
-                        //cmbRubricID.Items.Add(reader1[0]);
                         assessment_componenT[j] = Convert.ToInt32(r3[0]);
                         j++;
 
@@ -278,7 +270,7 @@ namespace ProjectB
                     int s1 = assessment_componenT[1];
                     int s2 = assessment_componenT[0];
                     int s3 = assessment_componenT[2];
-                    //MessageBox.Show("...");
+                    
                     foreach (int a in rubric_level)
 
                     {
@@ -334,41 +326,7 @@ namespace ProjectB
 
 
 
-                /*string Qeury1 = "Delete from dbo.RubricLevel where RubricId = '" + id + "'";
-                SqlCommand cmd1 = new SqlCommand(Qeury1, connection);
-                cmd1.ExecuteNonQuery();
-
-                string Qeury2 = "Delete from dbo.AssessmentComponent where RubricId = '" + id + "'";
-                SqlCommand cmd2 = new SqlCommand(Qeury2, connection);
-                cmd2.ExecuteNonQuery();
-
-
-                string Qeury = "Delete from dbo.Rubric where ID = '" + id + "'";
-                SqlCommand cmd = new SqlCommand(Qeury, connection);
-                cmd.ExecuteNonQuery();
-                this.dataRubric.Rows.RemoveAt(e.RowIndex);
-                MessageBox.Show("Rubric has been deleted");
-
-                using (SqlConnection sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.AssessmentComponent", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
-
-                    AssessmentComponent a = new AssessmentComponent();
-                    a.dataAssessmentComponent.DataSource = dtbl;
-
-                }
-                using (SqlConnection sqlcon = new SqlConnection(constring))
-                {
-                    sqlcon.Open();
-                    SqlDataAdapter sqlDA = new SqlDataAdapter("Select * from dbo.RubricLevel", sqlcon);
-                    DataTable dtbl = new DataTable();
-                    sqlDA.Fill(dtbl);
-
-                    dataGridView1.DataSource = dtbl;
-                }*/
+               
 
             }
                 if (e.ColumnIndex == dataRubric.Columns["edit"].Index)
@@ -430,10 +388,7 @@ namespace ProjectB
                     MessageBox.Show("Invalid Rubric Details ");
                 }
             }
-           /* if(txtDetails.Text== "")
-            {
-                MessageBox.Show("Details cannot be null");
-            }*/
+           
 
         }
         /// <summary>
@@ -444,11 +399,7 @@ namespace ProjectB
 
         private void comboCloNo_SelectedIndexChanged(object sender, EventArgs e)
         {
-            //if (comboCloNo.Text == "")
-            //{
-              //  MessageBox.Show("Clo cannot be null");
-
-            //}
+            
 
         }
 
@@ -591,9 +542,7 @@ namespace ProjectB
                 cmbRubricID.Text = dataGridView1.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
                 txtDetRubric.Text = dataGridView1.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
                 txtRubricLevel.Text = dataGridView1.Rows[e.RowIndex].Cells[3].FormattedValue.ToString();
-                //.Text = dataGridView1.Rows[e.RowIndex].Cells[4].FormattedValue.ToString();
-                //txtRegistrationNumber.Text = dataStudent.Rows[e.RowIndex].Cells[5].FormattedValue.ToString();
-
+                
                 
                 cmdAddLevel.Text = "Update";
 
@@ -630,7 +579,7 @@ namespace ProjectB
 
         private void comboCloNo_MouseClick(object sender, MouseEventArgs e)
         {
-            // UpdateValues();
+            
         }
 
         private void comboCloNo_Click(object sender, EventArgs e)

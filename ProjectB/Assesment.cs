@@ -31,9 +31,7 @@ namespace ProjectB
 
                 dataAssesment.DataSource = dtbl;
             }
-            // TODO: This line of code loads data into the 'projectBDataSet5.Assessment' table. You can move, or remove it, as needed.
-            //this.assessmentTableAdapter.Fill(this.projectBDataSet5.Assessment);
-
+            
         }
 
         private void cmdAddAssesment_Click(object sender, EventArgs e)
@@ -115,9 +113,6 @@ namespace ProjectB
                 SqlDataReader reader1 = com.ExecuteReader();
                 while (reader1.Read())
                 {
-                    //comboCloNo.Items.Add(reader[0]);
-                    //cmbCloID.Items.Add(reader[0]);
-                    //cmbRubricID.Items.Add(reader1[0]);
                     assessmentcomponent_array[i] = Convert.ToInt32(reader1[0]);
                     i++;
 
@@ -158,18 +153,7 @@ namespace ProjectB
 
 
 
-                /*int row = e.RowIndex;
-                int id = Convert.ToInt32(dataAssesment.Rows[row].Cells[0].Value);
-
-                string run = "Delete from dbo.AssessmentComponent where AssessmentId = '" + id + "'";
-                SqlCommand cmd1 = new SqlCommand(run, connection);
-                cmd1.ExecuteNonQuery();
-                string Qeury = "Delete from dbo.Assessment where Id = '" + id + "'";
-                SqlCommand cmd = new SqlCommand(Qeury, connection);
-                cmd.ExecuteNonQuery();
-                this.dataAssesment.Rows.RemoveAt(e.RowIndex);
-                MessageBox.Show("Assesment Information has been deleted");*/
-            }
+                }
             if (e.ColumnIndex == dataAssesment.Columns["edit"].Index)
             {
                 string temp = dataAssesment.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();

@@ -42,12 +42,11 @@ namespace ProjectB
         }
         void UpdateValues()
         {
-            //this.assessmentComponentTableAdapter.Fill(this.projectBDataSet6.AssessmentComponent);
+            
             this.studentAttendanceTableAdapter.Fill(this.projectBDataSet8.StudentAttendance);
 
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
-            //this.rubricTableAdapter.Fill(this.projectBDataSet3.Rubric);
-            //asse
+            
             string constring = "Data Source = DESKTOP-P4KMVN9; Initial Catalog = ProjectB; Integrated Security = True";
             SqlConnection cmd = new SqlConnection(constring);
             cmd.Open();
@@ -73,7 +72,7 @@ namespace ProjectB
         }
         void updatevalue()
         {
-            //this.assessmentComponentTableAdapter.Fill(this.projectBDataSet6.AssessmentComponent);
+           
             this.studentAttendanceTableAdapter.Fill(this.projectBDataSet8.StudentAttendance);
 
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
@@ -103,7 +102,7 @@ namespace ProjectB
         }
         void updatestatus()
         {
-            //this.assessmentComponentTableAdapter.Fill(this.projectBDataSet6.AssessmentComponent);
+            
             this.studentAttendanceTableAdapter.Fill(this.projectBDataSet8.StudentAttendance);
 
             // TODO: This line of code loads data into the 'projectBDataSet3.Rubric' table. You can move, or remove it, as needed.
@@ -137,7 +136,7 @@ namespace ProjectB
         {
             if (cmdAdd.Text == "Add")
             {
-                //int sid;
+                
                 string query1 = "SELECT Id FROM Student WHERE RegistrationNumber = '" + cmbStudentId.Text + "'";
                 SqlConnection conDataBase1 = new SqlConnection(constring);
 
@@ -146,7 +145,7 @@ namespace ProjectB
                 conDataBase1.Open();
                 cmdDataBase1.Parameters.Add(new SqlParameter("0", 1));
                 myreader1 = cmdDataBase1.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader1.Read())
                 {
                     sid = Convert.ToInt32(myreader1[0]);
@@ -166,15 +165,12 @@ namespace ProjectB
                 conDataBase2.Open();
                 cmdDataBase2.Parameters.Add(new SqlParameter("0", 1));
                 myreader2 = cmdDataBase2.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader2.Read())
                 {
                     att_id = Convert.ToInt32(myreader2[0]);
                 }
-                //string query2 = "SELECT Id FROM ClassAttendance WHERE AttendanceDate = '" + cmbAttendanceId.Text + "'";
-
-
-                //int lookid;
+                
                 string c = "Select LookupId from Lookup where Name = '" + cmbAttendanceStatus.Text + "'";
                 SqlConnection cn = new SqlConnection(constring);
                 SqlCommand cmddatabase3 = new SqlCommand(c, cn);
@@ -222,14 +218,14 @@ namespace ProjectB
                 conDataBase1.Open();
                 cmdDataBase1.Parameters.Add(new SqlParameter("0", 1));
                 myreader1 = cmdDataBase1.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader1.Read())
                 {
                     updated_sid= Convert.ToInt32(myreader1[0]);
                 }
 
 
-                //int att_id;
+                
                 String date = cmbAttendanceId.Text;
 
                 DateTime d1 = Convert.ToDateTime(date);
@@ -242,15 +238,12 @@ namespace ProjectB
                 conDataBase2.Open();
                 cmdDataBase2.Parameters.Add(new SqlParameter("0", 1));
                 myreader2 = cmdDataBase2.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader2.Read())
                 {
                     updated_aid = Convert.ToInt32(myreader2[0]);
                 }
-                //string query2 = "SELECT Id FROM ClassAttendance WHERE AttendanceDate = '" + cmbAttendanceId.Text + "'";
-
-
-                //int lookid;
+                
                 string c = "Select LookupId from Lookup where Name = '" + cmbAttendanceStatus.Text + "'";
                 SqlConnection cn = new SqlConnection(constring);
                 SqlCommand cmddatabase3 = new SqlCommand(c, cn);
@@ -303,14 +296,13 @@ namespace ProjectB
                 string attendance_id = dataStudentAttendance.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 string student_id = dataStudentAttendance.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
                 string lookup_id = dataStudentAttendance.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
-                //cmbAssessmentId.Text = dataAssessmentComponent.Rows[e.RowIndex].Cells[6].FormattedValue.ToString();
                 att_id = Convert.ToInt32(attendance_id);
                 db_att = att_id;
                 db_std = sid;
                 sid = Convert.ToInt32(student_id);
                 lookid = Convert.ToInt32(lookup_id);
 
-                // Student reg number
+              
                 string query1 = "SELECT RegistrationNumber FROM Student WHERE Id = '" + sid + "'";
                 SqlConnection conDataBase1 = new SqlConnection(constring);
 
@@ -319,14 +311,14 @@ namespace ProjectB
                 conDataBase1.Open();
                 cmdDataBase1.Parameters.Add(new SqlParameter("0", 1));
                 myreader1 = cmdDataBase1.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader1.Read())
                 {
                     reg_no = Convert.ToString(myreader1[0]);
                 }
                 cmbStudentId.Text = reg_no;
 
-                //Attendance Status
+                
 
                 string c = "Select Name from Lookup where LookupId = '" + lookid + "'";
                 SqlConnection cn = new SqlConnection(constring);
@@ -340,13 +332,11 @@ namespace ProjectB
                     status = Convert.ToString(reader[0]);
                 }
                 cmbAttendanceStatus.Text = status;
-
-                //Attendance Date
+                
 
                 String date = cmbAttendanceId.Text;
 
-                //DateTime d1 = Convert.ToDateTime(date);
-                //DateTime dateonly = d1.Date;
+               
                 string query2 = "SELECT AttendanceDate FROM ClassAttendance WHERE Id = '" + att_id + "'";
                 SqlConnection conDataBase2 = new SqlConnection(constring);
 
@@ -355,7 +345,7 @@ namespace ProjectB
                 conDataBase2.Open();
                 cmdDataBase2.Parameters.Add(new SqlParameter("0", 1));
                 myreader2 = cmdDataBase2.ExecuteReader();
-                //MessageBox.Show("Attendance Marked");
+                
                 while (myreader2.Read())
                 {
                     att_date = Convert.ToString(myreader2[0]);
@@ -377,8 +367,7 @@ namespace ProjectB
             }
             if (e.ColumnIndex == dataStudentAttendance.Columns["Delete"].Index)
             {
-                //string temp = dataStudentAttendance.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
-                //id = Convert.ToInt32(temp);
+               
                 string attendance_id = dataStudentAttendance.Rows[e.RowIndex].Cells[0].FormattedValue.ToString();
                 string student_id = dataStudentAttendance.Rows[e.RowIndex].Cells[1].FormattedValue.ToString();
                 string lookup_id = dataStudentAttendance.Rows[e.RowIndex].Cells[2].FormattedValue.ToString();
@@ -401,9 +390,7 @@ namespace ProjectB
 
                     dataStudentAttendance.DataSource = dtbl;
                 }
-                //string Qeury = "Delete from dbo.Assessment where ID = '" + id + "'";
-                //SqlCommand cmd = new SqlCommand(Qeury, connection);
-                //cmd.ExecuteNonQuery();
+                
 
 
 
